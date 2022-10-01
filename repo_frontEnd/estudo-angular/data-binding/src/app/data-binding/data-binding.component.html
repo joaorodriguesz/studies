@@ -1,0 +1,156 @@
+<section class="property-binding">
+
+  <article>
+    <h3>Interpolation / Interpolação</h3>
+    <p>String renderizada com interpolação {{ url }}</p>
+    <p>tambem consegue resolver expressões  1 + 1 =  {{ 1 + 1 }}</p>
+    <p>retorno de metodo =  {{ getValor() }}</p>
+  </article>
+  <hr> <!-- ################################################################ -->
+  <article>
+    <h3>Proerty Binding</h3>
+    <!-- interpolação -->
+    <img src="{{ urlImagem }}">
+    <br>
+    <!-- Proerty Binding variavel ou chamada de metodo -->
+    <img [src]="urlImagem">
+
+  </article>
+  <hr> <!-- ################################################################ -->
+  <article>
+      <h3>Class e Style Binding</h3>
+      <div>
+        Selecione uma clasee
+        <!-- #Variavel com o valor do selecte -->
+        <select #classe (change)="0">
+          <option value="alert-success">Sucesso</option>
+          <option value="alert-info">Info</option>
+          <option value="alert-warning">Warning</option>
+          <option value="alert-danger">Danger</option>
+        </select>
+
+        <br>
+        <br>
+
+        <div class="alert {{ classe.value }}">
+          texto colorido
+        </div>
+
+        <br>
+        <br>
+
+        <!-- adiciona a classe caso o valor de classe seja igual  -->
+        <!-- classe.value pega o valor da variavel -->
+        <div class="alert" [class.alert-success]="classe.value == 'alert-success'">Sucesso</div>
+        <div class="alert" [class.alert-info]="classe.value == 'alert-info'" >Info</div>
+        <div class="alert" [class.alert-warning]="classe.value == 'alert-warning'" >Warning</div>
+        <div class="alert" [class.alert-warning]="classe.value == 'alert-danger'" >danger</div>
+
+        <br>
+        <br>
+
+        <div class="alert alert-danger"
+          [style.display]="classe.value == 'alert-danger' ? 'block' : 'none'">
+          Error !
+        </div>
+
+      </div>
+  </article>
+  <hr> <!-- ################################################################ -->
+
+  <article>
+    <h3>Event binding</h3>
+    <div class="container-fluid">
+        <button
+          (click)="clickButton();"
+          class="btn btn-sm btn-primary"
+        >
+          Click!
+        </button>
+        <br>
+        <input type="text"
+          (keyup)="onKeyUp($event)"
+          (keyup.enter)="salvarValor(campoInput.value)"
+          #campoInput/>
+        <br>
+        <p> valor atual : {{ valorAtual }}</p>
+        <p> valor salvo (aperte enter) : {{ valorSalvo }}</p>
+    </div>
+  </article>
+  <hr> <!-- ################################################################ -->
+  <section class="two-way-binding container-fluid">
+    <article>
+      <h3>Two-way data biding</h3>
+      <div>
+
+        <label for="">propriedade e evento</label>
+        <div>
+          <input
+            #input
+            type="text"
+            [value]="nome"
+            (input)="nome = input.value"
+          />
+        </div>
+
+        <!-- representacao da entidade -->
+        <label for="">ngMOdel sem two way</label>
+        <div>
+          <input type="text"
+            [ngModel]="nome"
+            (ngModelChange)="nome = $event"
+          />
+        </div>
+
+        <label for="">two way data binding</label>
+        <div>
+          <input type="text"
+            [(ngModel)]="nome"
+          />
+        </div>
+
+
+        <p> vc digitou: {{ nome }}</p>
+
+        <hr> <!-- ################################################################ -->
+
+        <div>
+          <label for="">two way com obj</label>
+          <div>
+            <input type="text"
+             [(ngModel)]="pessoa.nome"
+            />
+            <input type="text"
+              [(ngModel)]="pessoa.idade"
+            />
+
+            <p>meu nome e idade sao {{ pessoa.nome }} - {{ pessoa.idade }}</p>
+          </div>
+
+        </div>
+
+        <hr> <!-- ################################################################ -->
+
+        <section class="input-output-properties">
+
+          <article>
+              <h3>input/output-properties</h3>
+
+              <app-curso [nome]="nomeCurso" ></app-curso>
+
+              <contador
+                [valor]="10"
+                (mudouValor)="onMudouValor($event)"
+              >
+              </contador>
+
+          </article>
+
+        </section>
+
+
+
+      </div>
+    </article>
+  </section>
+</section>

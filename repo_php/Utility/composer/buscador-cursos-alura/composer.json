@@ -1,0 +1,50 @@
+{
+    "name": "joaomrodrigues/buscador-curso",
+    "description": "Projeto que buscar cursos no site da alura",
+    "type": "library",
+    "authors": [
+        {
+            "name": "joão Paulo",
+            "email": "joaopaulomoreirarodrigues@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.3",
+        "symfony/dom-crawler": "^4.2",
+        "symfony/css-selector": "^4.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "squizlabs/php_codesniffer": "^3.6",
+        "phan/phan": "^5.3"
+    },
+    "scripts": {
+        "cs" : "phpcs --standard=PSR12 src/" ,
+        "phan" : "phan --allow-polyfill -parser",
+        "lista" : [
+            "@phan",
+            "@cs"
+        ],
+        "ls" : "dir",
+        "post-update-cmd" :[
+            "@cs"
+        ]
+    },
+    "scripts-descriptions": {
+        "lista" : "lista de dois script"
+    },
+    "autoload": {
+        "classmap": [
+            "./varias_classes_ex.php"
+        ],
+        "files": [
+            "./functions.php"
+        ],
+        "psr-4": {
+            "BuscadorDeCursos\\Src\\": "src/"
+        }
+    },
+    "licencce" : "GPL-3.0",
+    "bin" : ["buscar-cursos.php"]
+
+}

@@ -1,0 +1,13 @@
+# NOTAS
+
+-----
+
+## &Referencia
+
+> É um apelido um rotulo, para variável de referência, ambas tem o msm endereço de memoria .  
+
+---
+
+## *Ponteiro
+
+> É uma variável que tem o próprio endereço de memoria, mas  aponta para outro endereço de memoria .

@@ -1,0 +1,71 @@
+<nav class="navbar navbar-light  justify-content-center">
+    <span class="navbar-brand nav-margin link-nome-logo"><img class="logo-nav" src="Img/logo.png"> Synyster Store </span>
+    <form class="form-inline d-flex justify-content-center">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Pesquisar">
+            <button class="btn btn-sm btn-primary" type="button" id="button-addon2"><i class="bi bi-search"></i></button>
+        </div>
+    </form>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div id="sidebar-color" class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 nav-container">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <span class="fs-5 d-none d-sm-inline text-dark">Menu</span>
+                </a>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <li>
+                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi bi-bag"></i>
+                            <span class="ms-1 d-none d-sm-inline">Compras</span> 
+                        </a>
+                    </li>
+                    <li>
+                        <i class="fs-4 bi bi-heart text-primary favoritos"></i> 
+                            <a href="/favoritos" style="text-decoration:none;"  onclick="route()"  class=" px-0 align-middle">
+                            Favoritos
+                        </a>
+                    </li>
+                    <li>
+                        <i class="fs-4 bi-person-circle text-primary"></i>
+                            <a href="/home" style="text-decoration:none;"  onclick="route()"  class=" px-0 align-middle">
+                            Perfil
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi bi-gear"></i> 
+                            <span class="ms-1 d-none d-sm-inline">Configurações</span>
+                        </a>
+                        <a href="/"  onclick="route()"  class="nav-link px-0">Sair</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col py-3 conteudo bg-light">
+            <div class="div-usuario">
+                <img class="img-nome" src="Img/icon-usuario.png">
+                <h4 style="display: inline;">Usuario</h4>
+            </div>
+            <div class="envelope">
+                <div class="div-usuario ">
+                    <img class="img-nome-largura" src="Img/icon-usuario.png">
+                    <h6 style="display: inline;">Meus dados</h6>
+                </div>
+                <div class="div-usuario">
+                    <img class="img-nome-largura" src="Img/cadeado.png">
+                    <h6 style="display: inline;">Segurança da conta</h6>
+                </div>
+                <div class="div-usuario">
+                    <img class="img-nome-largura" src="Img/cartão.png">
+                    <h6 style="display: inline;">Gerencie seu cartão</h6>
+                </div>
+                <div class="div-usuario">
+                    <img class="img-nome-largura" src="Img/endereco.png">
+                    <h6 style="display: inline;">Endereços de entrega</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
