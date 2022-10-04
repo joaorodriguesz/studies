@@ -1,0 +1,12 @@
+<ul>
+  <li *ngFor="let cursos of cursos" >
+    {{ cursos }}
+  </li>
+</ul>
+<hr>
+<ul>
+  <li *ngFor="let cursos of cursos, let i = index" >
+    {{ i }} - {{ cursos }}
+  </li>
+</ul>
+
