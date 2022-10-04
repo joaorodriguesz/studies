@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="listaTelefonica">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista telefonica</title>
+  <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.css">
+  <script src="../../../node_modules/angular/angular.js"></script>
+  <script>
+      angular.module("listaTelefonica", []);
+      angular.module("listaTelefonica").controller("listaTelefonicaController", ($scope) => {
+        $scope.app = 'Lista telefonica'
+        $scope.contatos = [
+          {nome: 'nome1', numero: '123321121'},
+          {nome: 'nome2', numero: '123321122'},
+          {nome: 'nome3', numero: '123321123'},
+          {nome: 'nome4', numero: '123321124'}
+        ] 
+
+        $scope.operadoras = [
+          {nome: 'nome1', codigo: '123321121', categoria: 'fixo'},
+          {nome: 'nome2', codigo: '123321121', categoria: 'fixo'},
+          {nome: 'nome3', codigo: '123321121', categoria: 'celular'},
+          {nome: 'nome4', codigo: '123321121', categoria: 'celular'},
+        ] 
+        
+
+        $scope.adicionarContato = (contato) => {
+          $scope.contatos.push(angular.copy(contato));
+          delete $scope.contato;
+        };
+      })
+  </script>
+</head>
+<body ng-controller="listaTelefonicaController">
+  <div class="container-fluid d-flex justify-content-center">
+    <div class="card mt-4 text-center" style="width: 600px;">
+      <h4 class="mt-2">{{ app }}</h4>
+      <hr>
+      <table class="table table-striped table-hover table-sm">
+        <thead>
+          <tr>
+            <th>nome</th>
+            <th>telefone</th>
+            <th>operadora</th>
+          </tr>
+        </thead>
+        <tbody>
+  
+          <tr ng-repeat="contato in contatos">
+            <td>{{ contato.nome }}</td>
+            <td>{{ contato.numero }}</td>
+            <td>{{ contato.operadora }}</td>
+          </tr>
+  
+        <!-- ## Outra forma de percorrer com chave e valor  -->
+  
+        <!--
+          <tr ng-repeat="contato in contatos">
+            <td ng-repeat="(key, value) in contato" >{{ value }}</td>
+          </tr>
+        -->
+        </tbody>
+      </table>
+      <hr>
+
+      <!-- ng-model to way data binding -->
+
+      <div class="row m-2">
+        <div class="col-md-12">
+          <label for="">Nome</label>
+          <input type="text" class="form-control" ng-model="contato.nome">
+
+          <label for="">Telefone</label>
+          <input type="text" class="form-control" ng-model="contato.numero">
+          <label for="">Operadoras</label>
+
+          <!-- operadora.codigo (value define o valor de retorno) as operadora.nome (label define o titulo)-->
+          <!-- operadora.nome group by operadora.categoria(grupa e organiza o selected ) for operadora in operadoras -->
+          <select 
+            class="form-control"
+            ng-model="contato.operadora" 
+            ng-options="operadora.nome for operadora in operadoras">
+            <option value="">Selecione uma operadora</option>
+        </select>
+
+        </div>
+      </div>
+      <div class="row m-2">
+        <div class="col-md-12">
+          <button class="btn btn-primary btn-block btn-sm" ng-click="adicionarContato(contato)" ng-disabled="!contato.nome || !contato.numero" >Adicionar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "angular": "^1.2.32"
+    "angular": "^1.2.32",
+    "bootstrap": "^5.2.2"
   }
 }

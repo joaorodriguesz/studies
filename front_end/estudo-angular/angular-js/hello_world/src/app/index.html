@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="helloworld">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello world</title>
+  <script src="../../../node_modules/angular/angular.js"></script>
+  <script>
+
+    /*
+      const app = angular.module("helloworld",[]);
+      app.controller("helloworldController", ($scope) => {
+        $scope.message = "helloworld";
+      });
+    */
+
+    // "hewllowoeld" <- modulo [] <- importar outros modulos para esse, para poder usar as suas coisas
+    angular.module("helloworld",[]);
+    angular.module("helloworld").controller("helloworldController", ($scope) => {
+      $scope.message = "helloworld";
+    });
+  </script>
+</head>
+<body>
+  <div ng-controller="helloworldController">
+    {{ message }}
+  </div>
+</body>
+</html>
