@@ -116,19 +116,19 @@
 > >
 > > **EX - todo o banco :**
 > >
-> > ![](https://raw.githubusercontent.com/JoaoPauloMRodrigues/Data-Base/main/MySQL/DBA_seguran%C3%A7a_otimiza%C3%A7%C3%A3o/ex_mysqldump/ex_mysqldump.PNG)
+> > ![](C:\Users\joao\Desktop\sudeni2\repositorios_git\public\estudos\data_base\MySQL\DBA_segurança_otimização\ex_mysqldump\ex_mysqldump.PNG)
 > >
 > > **EX - Apenas uma tabela especifica :**
 > >
-> > ![](https://raw.githubusercontent.com/JoaoPauloMRodrigues/Data-Base/main/MySQL/DBA_seguran%C3%A7a_otimiza%C3%A7%C3%A3o/ex_mysqldump/ex_mysqldump_only_table.PNG)
+> > ![](C:\Users\joao\Desktop\sudeni2\repositorios_git\public\estudos\data_base\MySQL\DBA_segurança_otimização\ex_mysqldump\ex_mysqldump_only_table.PNG)
 > >
 > > **EX - Todos menos um :**
 > >
-> > ![](https://raw.githubusercontent.com/JoaoPauloMRodrigues/Data-Base/main/MySQL/DBA_seguran%C3%A7a_otimiza%C3%A7%C3%A3o/ex_mysqldump/ex_mysqldump_ignore.PNG)
+> > ![](C:\Users\joao\Desktop\sudeni2\repositorios_git\public\estudos\data_base\MySQL\DBA_segurança_otimização\ex_mysqldump\ex_mysqldump_ignore.PNG)
 > >
 > > ### EX - Executando todo o script de uma vez  (linha de comando) : 
 > >
-> > ![](https://raw.githubusercontent.com/JoaoPauloMRodrigues/Data-Base/main/MySQL/DBA_seguran%C3%A7a_otimiza%C3%A7%C3%A3o/ex_mysqldump/exe_script.PNG)
+> > ![](C:\Users\joao\Desktop\sudeni2\repositorios_git\public\estudos\data_base\MySQL\DBA_segurança_otimização\ex_mysqldump\exe_script.PNG)
 >
 > ---
 >
@@ -264,7 +264,7 @@
 >
 > ----
 >
-> > ![](https://raw.githubusercontent.com/JoaoPauloMRodrigues/Data-Base/main/MySQL/DBA_seguran%C3%A7a_otimiza%C3%A7%C3%A3o/repo_img/ip_coringa.jpeg)
+> > ![](C:\Users\joao\Desktop\sudeni2\repositorios_git\public\estudos\data_base\MySQL\DBA_segurança_otimização\repo_img\ip_coringa.jpeg)
 >
 > 1. *qualquer **IP** de **192.168.1.0** á **192.168.1.255** pode acessar;*
 > 2. *pode ir do **192.168.1.100** á **192.168.1.255;***
@@ -276,7 +276,7 @@
 
 > Conectar no MySQL por linha de comando :
 >
-> > ![](https://raw.githubusercontent.com/JoaoPauloMRodrigues/Data-Base/main/MySQL/DBA_seguran%C3%A7a_otimiza%C3%A7%C3%A3o/ex_mysqldump/conexao_mysql.jpeg)
+> > ![](C:\Users\joao\Desktop\sudeni2\repositorios_git\public\estudos\data_base\MySQL\DBA_segurança_otimização\ex_mysqldump\conexao_mysql.jpeg)
 >
 > - MySQL Slap :  simula consultas concorrentes no mysql. (*https://dev.mysql.com/doc/refman/8.0/en/mysqlslap.html*)
 
