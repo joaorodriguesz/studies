@@ -1,23 +1,24 @@
 package concessionaria.crud;
 
 import concessionaria.crud.dao.VeiculoDAO;
-import concessionaria.crud.dto.VeiculoDTO;
-import concessionaria.crud.model.Veiculo;
-
-import java.math.BigDecimal;
-import java.util.Optional;
 
 public class Application {
     public static void main(String[] args) {
        VeiculoDAO dao = new VeiculoDAO();
 
-        Veiculo veiculo = new Veiculo();
+       dao.delete(9L);
 
-        Optional<Veiculo> veiculo2 = dao.findById(1L);
-
-        System.out.println(veiculo2.get().getFkModelo());
-
-        Veiculo veiculo3 = veiculo2.get();
+//        Veiculo veiculo = new Veiculo();
+//
+//        Optional<Veiculo> veiculo2 = dao.findById(1L);
+//
+//        Veiculo veiculo3 = veiculo2.get();
+//
+//        System.out.println(veiculo3.getValor());
+//
+//        veiculo3.setValor(BigDecimal.valueOf(66666));
+//
+//        dao.update(veiculo3);
 
 
 //         dao.findAll().forEach(a -> {

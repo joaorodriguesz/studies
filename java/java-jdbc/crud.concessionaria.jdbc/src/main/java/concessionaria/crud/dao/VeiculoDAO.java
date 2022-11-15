@@ -1,5 +1,6 @@
 package concessionaria.crud.dao;
 
+import concessionaria.crud.dao.IVeiculoDAO;
 import concessionaria.crud.dto.VeiculoDTO;
 import concessionaria.crud.infra.ConnectionFactory;
 import concessionaria.crud.model.Veiculo;
@@ -71,6 +72,16 @@ public class VeiculoDAO implements IVeiculoDAO {
 
     @Override
     public void delete(Long id) {
+        try(Connection conection = ConnectionFactory.getConnection()){
+            String sql = "DELETE FROM veiculo WHERE id_veiculo = ?";
+
+            PreparedStatement preparedStatement = conection.prepareStatement(sql);
+            preparedStatement.setLong(1, id);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException ex){
+            throw new RuntimeException(ex);
+        }
 
     }
 
