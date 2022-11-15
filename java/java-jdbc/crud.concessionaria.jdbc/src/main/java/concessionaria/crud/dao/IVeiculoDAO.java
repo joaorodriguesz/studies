@@ -1,5 +1,6 @@
 package concessionaria.crud.dao;
 
+import concessionaria.crud.dto.VeiculoDTO;
 import concessionaria.crud.model.Veiculo;
 
 import java.util.List;
@@ -10,6 +11,7 @@ public interface IVeiculoDAO {
     Veiculo save(Veiculo veiculo);
     Veiculo update(Veiculo veiculo);
     void delete(Long id);
-    List<Veiculo> findAll();
+    List<VeiculoDTO> findAll();
+
     Optional<Veiculo> findById(Long id);
 }

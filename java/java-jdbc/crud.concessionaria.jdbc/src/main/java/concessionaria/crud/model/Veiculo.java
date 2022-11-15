@@ -4,6 +4,21 @@ import java.math.BigDecimal;
 
 public class Veiculo {
 
+
+    public Veiculo (){};
+
+    public Veiculo(Long id, Integer qtdRodas, Integer consumoLitro, Integer qtdMarcha, Long fkModelo, Long fkConfiguracao, Long fkCondicao, Long fkTipo, BigDecimal valor) {
+        this.id = id;
+        this.qtdRodas = qtdRodas;
+        this.consumoLitro = consumoLitro;
+        this.qtdMarcha = qtdMarcha;
+        this.fkModelo = fkModelo;
+        this.fkConfiguracao = fkConfiguracao;
+        this.fkCondicao = fkCondicao;
+        this.fkTipo = fkTipo;
+        this.valor = valor;
+    }
+
     private Long id;
     private Integer qtdRodas;
     private Integer consumoLitro;
