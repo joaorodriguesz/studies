@@ -1,6 +1,5 @@
 package concessionaria.crud.dao;
 
-import concessionaria.crud.dao.IVeiculoDAO;
 import concessionaria.crud.dto.VeiculoDTO;
 import concessionaria.crud.infra.ConnectionFactory;
 import concessionaria.crud.model.Veiculo;
@@ -11,7 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class VeiculoDAO implements IVeiculoDAO {
+public final class VeiculoDAO implements ICrudOperators<Veiculo, VeiculoDTO> {
+
+    private static final VeiculoDAO INSTANCE = new VeiculoDAO();
+
+    private VeiculoDAO(){}
+
+    public static VeiculoDAO getInstance(){
+        return INSTANCE;
+    }
 
     @Override
     public Veiculo save(Veiculo veiculo) {
@@ -119,11 +126,11 @@ public class VeiculoDAO implements IVeiculoDAO {
     }
 
     @Override
-    public Optional<Veiculo> findById(Long id) {
+    public Optional<VeiculoDTO> findById(Long id) {
 
-        String sql = "SELECT * FROM veiculo WHERE id_veiculo = ?";
+        String sql = "SELECT * FROM vw_veiculo WHERE id = ?";
 
-        Veiculo veiculo = null;
+        VeiculoDTO veiculoDTO = null;
 
         try(Connection conection = ConnectionFactory.getConnection()){
             PreparedStatement preparedStatement = conection.prepareStatement(sql);
@@ -133,23 +140,23 @@ public class VeiculoDAO implements IVeiculoDAO {
 
             while (resultSet.next()){
 
-                Long idPk = resultSet.getLong("id_veiculo");
+                Long idFk = resultSet.getLong("id");
                 Integer qtdRodas = resultSet.getInt("qtd_rodas");
                 Integer consumoLitro = resultSet.getInt("consumo_litro");
                 Integer qtdMarcha = resultSet.getInt("qtd_marcha");
-                Long modelo = resultSet.getLong("modelo_id_modelo");
-                Long configuracao = resultSet.getLong("configuracao_veiculo_id_configuracao");
-                Long condicao = resultSet.getLong("condicao_id_condicao");
-                Long tipo = resultSet.getLong("tipo_veiculo_id_tipo");
+                String modelo = resultSet.getString("modelo");
+                String configuracao = resultSet.getString("configuracao");
+                String condicao = resultSet.getString("condicao");
+                String tipo = resultSet.getString("tipo");
                 BigDecimal valor = resultSet.getBigDecimal("valor");
 
-                veiculo = new Veiculo(idPk, qtdRodas, consumoLitro, qtdMarcha, modelo, configuracao, condicao, tipo, valor);
+                veiculoDTO = new VeiculoDTO(id, qtdRodas, consumoLitro, qtdMarcha, modelo, configuracao, condicao, tipo, valor);
             }
 
         } catch (SQLException ex){
             throw new RuntimeException(ex);
         }
 
-        return Optional.ofNullable(veiculo);
+        return Optional.ofNullable(veiculoDTO);
     }
 }

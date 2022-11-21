@@ -1,14 +1,25 @@
 package concessionaria.crud;
 
 import concessionaria.crud.dao.VeiculoDAO;
+import concessionaria.crud.dto.VeiculoDTO;
+import concessionaria.crud.model.Veiculo;
+import concessionaria.crud.service.VeiculoService;
+
+import java.math.BigDecimal;
+import java.util.Optional;
 
 public class Application {
     public static void main(String[] args) {
-       VeiculoDAO dao = new VeiculoDAO();
+       VeiculoDAO dao = VeiculoDAO.getInstance();
+       VeiculoService veiculoService = VeiculoService.getInstance();
 
-       dao.delete(9L);
+        Optional<VeiculoDTO> a = veiculoService.findById(1L);
 
-//        Veiculo veiculo = new Veiculo();
+        System.out.println(a.get().getId());
+
+//       dao.delete(9L);
+
+        Veiculo veiculo = new Veiculo();
 //
 //        Optional<Veiculo> veiculo2 = dao.findById(1L);
 //
@@ -25,18 +36,18 @@ public class Application {
 //             System.out.println(a.getId());
 //         });
 //
-//        veiculo.setConsumoLitro(23);
-//        veiculo.setQtdMarcha(23);
-//        veiculo.setQtdRodas(23);
-//        veiculo.setValor(BigDecimal.valueOf(230000));
-//        veiculo.setFkCondicao(1L);
-//        veiculo.setFkConfiguracao(1L);
-//        veiculo.setFkTipo(1L);
-//        veiculo.setFkModelo(1L);
-//
-//        Veiculo veiculo1 = dao.save(veiculo);
-//
-//        System.out.println(" Adicionado registro de id: " + veiculo1.getId());
+        veiculo.setConsumoLitro(45);
+        veiculo.setQtdMarcha(3);
+        veiculo.setQtdRodas(3);
+        veiculo.setValor(BigDecimal.valueOf(66666));
+        veiculo.setFkCondicao(1L);
+        veiculo.setFkConfiguracao(1L);
+        veiculo.setFkTipo(1L);
+        veiculo.setFkModelo(1L);
+
+        Veiculo veiculo1 = dao.save(veiculo);
+
+        System.out.println(" Adicionado registro de id: " + veiculo1.getId());
 
     }
 }

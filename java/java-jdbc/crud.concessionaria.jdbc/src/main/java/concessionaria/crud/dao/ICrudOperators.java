@@ -6,12 +6,12 @@ import concessionaria.crud.model.Veiculo;
 import java.util.List;
 import java.util.Optional;
 
-public interface IVeiculoDAO {
+public interface ICrudOperators<T,Y> {
 
-    Veiculo save(Veiculo veiculo);
-    Veiculo update(Veiculo veiculo);
+    T save(T object);
+    T update(T object);
     void delete(Long id);
-    List<VeiculoDTO> findAll();
+    List<Y> findAll();
 
-    Optional<Veiculo> findById(Long id);
+    Optional<Y> findById(Long id);
 }
