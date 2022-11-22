@@ -11,7 +11,27 @@ public class Venda {
     private Long fkCliente;
     private Long fkFuncionario;
     private Long fkCondicaoPagamento;
-    private Date dataVenda;
+    private String dataVenda;
+
+    public Venda(){};
+
+    public Venda(Long id, String observacao, BigDecimal valorTotal, Long fkCliente, Long fkFuncionario, Long fkCondicaoPagamento, String dataVenda) {
+        this.id = id;
+        this.observacao = observacao;
+        this.valorTotal = valorTotal;
+        this.fkCliente = fkCliente;
+        this.fkFuncionario = fkFuncionario;
+        this.fkCondicaoPagamento = fkCondicaoPagamento;
+        this.dataVenda = dataVenda;
+    }
+
+    public Venda(String observacao, BigDecimal valorTotal, Long fkCliente, Long fkFuncionario, Long fkCondicaoPagamento) {
+        this.observacao = observacao;
+        this.valorTotal = valorTotal;
+        this.fkCliente = fkCliente;
+        this.fkFuncionario = fkFuncionario;
+        this.fkCondicaoPagamento = fkCondicaoPagamento;
+    }
 
     public Long getId() {
         return id;
@@ -61,11 +81,11 @@ public class Venda {
         this.fkCondicaoPagamento = fkCondicaoPagamento;
     }
 
-    public Date getDataVenda() {
+    public String getDataVenda() {
         return dataVenda;
     }
 
-    public void setDataVenda(Date dataVenda) {
+    public void setDataVenda(String dataVenda) {
         this.dataVenda = dataVenda;
     }
 }
