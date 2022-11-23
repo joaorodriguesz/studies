@@ -1,12 +1,10 @@
 package concessionaria.crud.dao;
 
-import concessionaria.crud.dto.VendaDTO;
 import concessionaria.crud.infra.ConnectionFactory;
-import concessionaria.crud.model.Venda;
 import concessionaria.crud.model.VendaHasVeiculo;
 
-import java.math.BigDecimal;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,7 +51,7 @@ public final class VendaHasVeiculoDAO implements ICrudOperators<VendaHasVeiculo,
     @Override
     public void delete(Long id) {
         try(Connection conection = ConnectionFactory.getConnection()){
-            String sql = "DELETE FROM venda_has_veiculo WHERE id_venda = ?";
+            String sql = "DELETE FROM venda_has_veiculo WHERE id_venda_has_veiculo = ?";
 
             PreparedStatement preparedStatement = conection.prepareStatement(sql);
             preparedStatement.setLong(1, id);
@@ -96,6 +94,34 @@ public final class VendaHasVeiculoDAO implements ICrudOperators<VendaHasVeiculo,
 
         return Optional.ofNullable(vendaHasVeiculo);
     }
+
+    public List<VendaHasVeiculo> findAllByVendaId(Long id) {
+        String sql = "SELECT * FROM venda_has_veiculo WHERE venda_id_venda = ?";
+
+        List<VendaHasVeiculo> vendaHasVeiculo = new ArrayList<VendaHasVeiculo>();
+
+        try(Connection conection = ConnectionFactory.getConnection()){
+            PreparedStatement preparedStatement = conection.prepareStatement(sql);
+            preparedStatement.setLong(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+
+                Long idFk = resultSet.getLong("id_venda_has_veiculo");
+                Long fkVeiculo = resultSet.getLong("veiculo_id_veiculo");
+                Long fkVenda = resultSet.getLong("venda_id_venda");
+
+                vendaHasVeiculo.add(new VendaHasVeiculo(idFk, fkVeiculo, fkVenda));
+            }
+
+        } catch (SQLException ex){
+            throw new RuntimeException(ex);
+        }
+
+        return vendaHasVeiculo;
+    }
+
 
 
 }

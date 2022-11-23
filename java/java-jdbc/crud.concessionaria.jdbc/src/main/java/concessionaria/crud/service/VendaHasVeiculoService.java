@@ -1,8 +1,6 @@
 package concessionaria.crud.service;
 
 import concessionaria.crud.dao.VendaHasVeiculoDAO;
-import concessionaria.crud.dto.VeiculoDTO;
-import concessionaria.crud.model.Veiculo;
 import concessionaria.crud.model.VendaHasVeiculo;
 
 import java.util.List;
@@ -48,5 +46,12 @@ public class VendaHasVeiculoService {
             throw new IllegalArgumentException("O argumento passado não pode ser null");
         }
         return vendaHasVeiculoDAO.findById(id);
+    }
+
+    public List<VendaHasVeiculo> findAllById(Long id) {
+        if(Objects.isNull(id)){
+            throw new IllegalArgumentException("O argumento passado não pode ser null");
+        }
+        return vendaHasVeiculoDAO.findAllByVendaId(id);
     }
 }

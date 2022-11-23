@@ -152,4 +152,35 @@ public final class VendaDAO implements ICrudOperators<Venda, VendaDTO> {
 
         return Optional.ofNullable(vendaDTOList);
     }
+
+    public List<Venda> findAllById(Long id) {
+        String sql = "SELECT * FROM venda WHERE id_venda = ?";
+
+        List<Venda> vendaList = new ArrayList<Venda>();
+
+        try(Connection conection = ConnectionFactory.getConnection()){
+            PreparedStatement preparedStatement = conection.prepareStatement(sql);
+            preparedStatement.setLong(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+
+                Long idFk = resultSet.getLong("id_venda");
+                BigDecimal valorVenda = resultSet.getBigDecimal("valor_total_venda");
+                Long codicaoPagamento = resultSet.getLong("cond_pagamento_id_condicao");
+                Long cliente = resultSet.getLong("cliente_id_cliente");
+                Long funcionario = resultSet.getLong("funcionario_id_funcionario");
+                String dataVenda = resultSet.getString("data_venda");
+                String observacao = resultSet.getString("observacao_venda");
+
+                vendaList.add(new Venda (idFk, observacao, valorVenda, cliente, funcionario, codicaoPagamento, dataVenda));
+            }
+
+        } catch (SQLException ex){
+            throw new RuntimeException(ex);
+        }
+
+        return vendaList;
+    }
 }

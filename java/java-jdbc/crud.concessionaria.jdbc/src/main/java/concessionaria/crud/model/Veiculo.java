@@ -1,11 +1,17 @@
 package concessionaria.crud.model;
 
+import javax.swing.*;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class Veiculo {
 
 
     public Veiculo (){};
+
+    public Veiculo(Integer qtdRodas){
+        this.qtdRodas = qtdRodas;
+    }
 
     public Veiculo(Long id, Integer qtdRodas, Integer consumoLitro, Integer qtdMarcha, Long fkModelo, Long fkConfiguracao, Long fkCondicao, Long fkTipo, BigDecimal valor) {
         this.id = id;
@@ -45,6 +51,9 @@ public class Veiculo {
     }
 
     public void setId(Long id) {
+        if(Objects.isNull(id)){
+            throw new IllegalArgumentException("O argumento passado não pode ser null");
+        }
         this.id = id;
     }
 
@@ -53,6 +62,9 @@ public class Veiculo {
     }
 
     public void setQtdRodas(Integer qtdRodas) {
+        if(Objects.isNull(qtdRodas)){
+            throw new IllegalArgumentException("O argumento passado não pode ser null");
+        }
         this.qtdRodas = qtdRodas;
     }
 
@@ -61,6 +73,9 @@ public class Veiculo {
     }
 
     public void setConsumoLitro(Integer consumoLitro) {
+        if(Objects.isNull(consumoLitro)){
+            throw new IllegalArgumentException("O argumento passado não pode ser null");
+        }
         this.consumoLitro = consumoLitro;
     }
 
@@ -69,6 +84,9 @@ public class Veiculo {
     }
 
     public void setQtdMarcha(Integer qtdMarcha) {
+        if(Objects.isNull(qtdMarcha)){
+            throw new IllegalArgumentException("O argumento passado não pode ser null");
+        }
         this.qtdMarcha = qtdMarcha;
     }
 
@@ -77,6 +95,9 @@ public class Veiculo {
     }
 
     public void setValor(BigDecimal valor) {
+        if(Objects.isNull(valor)){
+            throw new IllegalArgumentException("O argumento passado não pode ser null");
+        }
         this.valor = valor;
     }
 
@@ -85,6 +106,9 @@ public class Veiculo {
     }
 
     public void setFkModelo(Long fkModelo) {
+        if(Objects.isNull(fkModelo)){
+            throw new IllegalArgumentException("O argumento passado não pode ser null");
+        }
         this.fkModelo = fkModelo;
     }
 
@@ -93,6 +117,9 @@ public class Veiculo {
     }
 
     public void setFkConfiguracao(Long fkConfiguracao) {
+        if(Objects.isNull(fkConfiguracao)){
+            throw new IllegalArgumentException("O argumento passado não pode ser null");
+        }
         this.fkConfiguracao = fkConfiguracao;
     }
 
@@ -101,6 +128,9 @@ public class Veiculo {
     }
 
     public void setFkCondicao(Long fkCondicao) {
+        if(Objects.isNull(fkCondicao)){
+            throw new IllegalArgumentException("O argumento passado não pode ser null");
+        }
         this.fkCondicao = fkCondicao;
     }
 
@@ -109,6 +139,9 @@ public class Veiculo {
     }
 
     public void setFkTipo(Long fkTipo) {
+        if(Objects.isNull(fkTipo)){
+            throw new IllegalArgumentException("O argumento passado não pode ser null");
+        }
         this.fkTipo = fkTipo;
     }
 }

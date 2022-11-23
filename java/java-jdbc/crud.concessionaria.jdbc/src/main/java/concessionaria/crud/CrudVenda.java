@@ -19,8 +19,17 @@ public class CrudVenda {
 
        // System.out.println(vendaService.findAll().get(0).getCliente());
 
+
         //System.out.println(vendaService.findById(1L).get());
-//        venda.setId();
-//        vendaService.update()
+
+        //CRUD
+
+//        Venda venda1 = vendaService.findAllById(1L).get().get(0);
+//        venda1.setObservacao("HUMMMM");
+//        vendaService.update(venda1);
+
+        ///DELETE
+
+        //vendaService.delete(1L);
     }
 }

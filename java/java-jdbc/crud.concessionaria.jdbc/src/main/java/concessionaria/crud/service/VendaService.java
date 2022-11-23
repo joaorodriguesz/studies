@@ -11,9 +11,11 @@ import java.util.Optional;
 public class VendaService {
 
     private static final VendaService INSTANCE = new VendaService();
+    private VendaService(){}
+
     private VendaDAO vendaDAO = VendaDAO.getInstance();
 
-    private VendaService(){}
+    VendaHasVeiculoService vendaHasVeiculoService = VendaHasVeiculoService.getInstance();
 
     public static VendaService getInstance(){
         return INSTANCE;
@@ -21,22 +23,24 @@ public class VendaService {
 
     public Venda save(Venda venda) {
         if(Objects.isNull(venda)){
-            throw new IllegalArgumentException("O argumento passado não pode ser null");
+            throw new NullPointerException("O argumento passado não pode ser null");
         }
         return vendaDAO.save(venda);
     }
 
     public Venda update(Venda venda) {
         if(Objects.isNull(venda)){
-            throw new IllegalArgumentException("O argumento passado não pode ser null");
+            throw new NullPointerException("O argumento passado não pode ser null");
         }
         return vendaDAO.update(venda);
     }
 
     public void delete(Long id) {
         if(Objects.isNull(id)){
-            throw new IllegalArgumentException("O argumento passado não pode ser null");
+            throw new NullPointerException("O argumento passado não pode ser null");
         }
+
+        vendaHasVeiculoService.findAllById(id).forEach(vendaHasVeiculo -> vendaHasVeiculoService.delete(vendaHasVeiculo.getId()));
         vendaDAO.delete(id);
     }
 
@@ -46,9 +50,16 @@ public class VendaService {
 
     public Optional<VendaDTO> findById(Long id) {
         if(Objects.isNull(id)){
-            throw new IllegalArgumentException("O argumento passado não pode ser null");
+            throw new NullPointerException("O argumento passado não pode ser null");
         }
         return vendaDAO.findById(id);
+    }
+
+    public List<Venda> findAllById(Long id) {
+        if(Objects.isNull(id)){
+            throw new NullPointerException("O argumento passado não pode ser null");
+        }
+        return vendaDAO.findAllById(id);
     }
 
 }
