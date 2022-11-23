@@ -53,6 +53,7 @@ public class CrudConcessionaria {
                 creatVeiculo();
                 break;
             case 2:
+                readVeiculos();
                 break;
             case 3:
                 break;
@@ -96,5 +97,24 @@ public class CrudConcessionaria {
         veiculoService.save(veiculo);
 
         JOptionPane.showMessageDialog(null,"Veiculo cadastrado");
+    }
+
+    private void readVeiculos() {
+        StringBuilder veiculosCadastrados = new StringBuilder();
+        veiculosCadastrados.append("=====================\n");
+
+        veiculoService.findAll().forEach(veiculos -> {
+            veiculosCadastrados.append(veiculos.getId() + "  ");
+            veiculosCadastrados.append(veiculos.getQtdRodas() + "  ");
+            veiculosCadastrados.append(veiculos.getConsumoLitro() + "  ");
+            veiculosCadastrados.append(veiculos.getQtdMarcha() + "  ");
+            veiculosCadastrados.append(veiculos.getModelo() + "  ");
+            veiculosCadastrados.append(veiculos.getConfiguracao() + "  ");
+            veiculosCadastrados.append(veiculos.getCondicao() + "  ");
+            veiculosCadastrados.append(veiculos.getTipo() + "  ");
+            veiculosCadastrados.append(veiculos.getValor() + "  ");
+            veiculosCadastrados.append("\n---------------------------------------- \n");
+        });
+        JOptionPane.showMessageDialog(null,veiculosCadastrados);
     }
 }
