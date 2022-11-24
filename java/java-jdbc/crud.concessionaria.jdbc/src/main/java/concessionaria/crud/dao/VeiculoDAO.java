@@ -1,6 +1,6 @@
 package concessionaria.crud.dao;
 
-import concessionaria.crud.dto.VeiculoDTO;
+import concessionaria.crud.view.VeiculoView;
 import concessionaria.crud.infra.ConnectionFactory;
 import concessionaria.crud.model.Veiculo;
 
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public final class VeiculoDAO implements ICrudOperators<Veiculo, VeiculoDTO> {
+public final class VeiculoDAO implements ICrudOperators<Veiculo, VeiculoView> {
 
     private static final VeiculoDAO INSTANCE = new VeiculoDAO();
 
@@ -93,10 +93,10 @@ public final class VeiculoDAO implements ICrudOperators<Veiculo, VeiculoDTO> {
     }
 
     @Override
-    public List<VeiculoDTO> findAll() {
+    public List<VeiculoView> findAll() {
         String sql = "SELECT * FROM vw_veiculo";
 
-        List<VeiculoDTO> veiculoDtoList = new ArrayList<VeiculoDTO>();
+        List<VeiculoView> veiculoDtoList = new ArrayList<VeiculoView>();
 
         try(Connection conection = ConnectionFactory.getConnection()){
             PreparedStatement preparedStatement = conection.prepareStatement(sql);
@@ -115,7 +115,7 @@ public final class VeiculoDAO implements ICrudOperators<Veiculo, VeiculoDTO> {
                 String tipo = resultSet.getString("tipo");
                 BigDecimal valor = resultSet.getBigDecimal("valor");
 
-                veiculoDtoList.add(new VeiculoDTO(id, qtdRodas, consumoLitro, qtdMarcha, modelo, configuracao, condicao, tipo, valor));
+                veiculoDtoList.add(new VeiculoView(id, qtdRodas, consumoLitro, qtdMarcha, modelo, configuracao, condicao, tipo, valor));
             }
 
         } catch (SQLException ex){
@@ -126,11 +126,11 @@ public final class VeiculoDAO implements ICrudOperators<Veiculo, VeiculoDTO> {
     }
 
     @Override
-    public Optional<VeiculoDTO> findById(Long id) {
+    public Optional<VeiculoView> findById(Long id) {
 
         String sql = "SELECT * FROM vw_veiculo WHERE id = ?";
 
-        VeiculoDTO veiculoDTO = null;
+        VeiculoView veiculoDTO = null;
 
         try(Connection conection = ConnectionFactory.getConnection()){
             PreparedStatement preparedStatement = conection.prepareStatement(sql);
@@ -150,7 +150,7 @@ public final class VeiculoDAO implements ICrudOperators<Veiculo, VeiculoDTO> {
                 String tipo = resultSet.getString("tipo");
                 BigDecimal valor = resultSet.getBigDecimal("valor");
 
-                veiculoDTO = new VeiculoDTO(id, qtdRodas, consumoLitro, qtdMarcha, modelo, configuracao, condicao, tipo, valor);
+                veiculoDTO = new VeiculoView(id, qtdRodas, consumoLitro, qtdMarcha, modelo, configuracao, condicao, tipo, valor);
             }
 
         } catch (SQLException ex){
@@ -158,5 +158,40 @@ public final class VeiculoDAO implements ICrudOperators<Veiculo, VeiculoDTO> {
         }
 
         return Optional.ofNullable(veiculoDTO);
+    }
+
+    public Optional<Veiculo> findVeiculoById(Long id) {
+
+        String sql = "SELECT * FROM veiculo WHERE id_veiculo = ?";
+
+        Veiculo veiculo = null;
+
+        try(Connection conection = ConnectionFactory.getConnection()){
+            PreparedStatement preparedStatement = conection.prepareStatement(sql);
+            preparedStatement.setLong(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+
+                Long idFk = resultSet.getLong("id_veiculo");
+                Integer qtdRodas = resultSet.getInt("qtd_rodas");
+                Integer consumoLitro = resultSet.getInt("consumo_litro");
+                Integer qtdMarcha = resultSet.getInt("qtd_marcha");
+                Long modelo = resultSet.getLong("modelo_id_modelo");
+                Long configuracao = resultSet.getLong("configuracao_veiculo_id_configuracao");
+                Long condicao = resultSet.getLong("condicao_id_condicao");
+                Long tipo = resultSet.getLong("tipo_veiculo_id_tipo");
+                BigDecimal valor = resultSet.getBigDecimal("valor");
+
+
+                veiculo = new Veiculo(id, qtdRodas, consumoLitro, qtdMarcha, modelo, configuracao, condicao, tipo, valor);
+            }
+
+        } catch (SQLException ex){
+            throw new RuntimeException(ex);
+        }
+
+        return Optional.ofNullable(veiculo);
     }
 }

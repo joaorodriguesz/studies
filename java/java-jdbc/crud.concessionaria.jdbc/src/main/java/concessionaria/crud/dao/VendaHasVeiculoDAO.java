@@ -20,13 +20,12 @@ public final class VendaHasVeiculoDAO implements ICrudOperators<VendaHasVeiculo,
     @Override
     public VendaHasVeiculo save(VendaHasVeiculo vendaHasVeiculo) {
         try(Connection conection = ConnectionFactory.getConnection()){
-            String sql = "INSERT INTO venda_has_veiculo(id_venda_has_veiculo, venda_id_venda, veiculo_id_veiculo\n) VALUES(?, ?, ?)";
+            String sql = "INSERT INTO venda_has_veiculo(venda_id_venda, veiculo_id_veiculo\n) VALUES(?, ?)";
 
             PreparedStatement preparedStatement = conection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-            preparedStatement.setLong(1, vendaHasVeiculo.getId());
-            preparedStatement.setLong(2, vendaHasVeiculo.getFkVenda());
-            preparedStatement.setLong(3, vendaHasVeiculo.getFkVeiculo());
+            preparedStatement.setLong(1, vendaHasVeiculo.getFkVenda());
+            preparedStatement.setLong(2, vendaHasVeiculo.getFkVeiculo());
 
             preparedStatement.executeUpdate();
 
@@ -96,7 +95,7 @@ public final class VendaHasVeiculoDAO implements ICrudOperators<VendaHasVeiculo,
     }
 
     public List<VendaHasVeiculo> findAllByVendaId(Long id) {
-        String sql = "SELECT * FROM venda_has_veiculo WHERE venda_id_venda = ?";
+        String sql = "SELECT * FROM venda_has_veiculo WHERE venda_id_venda = ? order by id_venda_has_veiculo";
 
         List<VendaHasVeiculo> vendaHasVeiculo = new ArrayList<VendaHasVeiculo>();
 

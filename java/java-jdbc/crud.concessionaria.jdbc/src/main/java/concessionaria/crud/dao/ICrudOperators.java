@@ -1,8 +1,5 @@
 package concessionaria.crud.dao;
 
-import concessionaria.crud.dto.VeiculoDTO;
-import concessionaria.crud.model.Veiculo;
-
 import java.util.List;
 import java.util.Optional;
 

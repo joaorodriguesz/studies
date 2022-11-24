@@ -1,12 +1,10 @@
 package concessionaria.crud.service;
 
 import concessionaria.crud.dao.VeiculoDAO;
-import concessionaria.crud.dto.VeiculoDTO;
+import concessionaria.crud.view.VeiculoView;
 import concessionaria.crud.model.Veiculo;
 
-import javax.swing.*;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public final class VeiculoService {
@@ -34,12 +32,16 @@ public final class VeiculoService {
         veiculoDAO.delete(id);
     }
 
-    public List<VeiculoDTO> findAll() {
+    public List<VeiculoView> findAll() {
         return veiculoDAO.findAll();
     }
 
-    public Optional<VeiculoDTO> findById(Long id) {
+    public Optional<VeiculoView> findById(Long id) {
         return veiculoDAO.findById(id);
+    }
+
+    public Optional<Veiculo> findVeiculoById(Long id) {
+        return veiculoDAO.findVeiculoById(id);
     }
 
 }

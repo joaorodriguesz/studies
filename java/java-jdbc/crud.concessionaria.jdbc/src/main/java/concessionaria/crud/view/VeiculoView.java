@@ -1,10 +1,10 @@
-package concessionaria.crud.dto;
+package concessionaria.crud.view;
 
 import java.math.BigDecimal;
 
-public class VeiculoDTO {
+public class VeiculoView {
 
-    public VeiculoDTO(Long id, Integer qtdRodas, Integer consumoLitro, Integer qtdMarcha, String modelo, String configuracao, String condicao, String tipo, BigDecimal valor) {
+    public VeiculoView(Long id, Integer qtdRodas, Integer consumoLitro, Integer qtdMarcha, String modelo, String configuracao, String condicao, String tipo, BigDecimal valor) {
         this.id = id;
         this.qtdRodas = qtdRodas;
         this.consumoLitro = consumoLitro;

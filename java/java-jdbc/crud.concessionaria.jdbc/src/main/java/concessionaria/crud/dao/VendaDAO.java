@@ -1,7 +1,6 @@
 package concessionaria.crud.dao;
 
-import concessionaria.crud.dto.VeiculoDTO;
-import concessionaria.crud.dto.VendaDTO;
+import concessionaria.crud.view.VendaView;
 import concessionaria.crud.infra.ConnectionFactory;
 import concessionaria.crud.model.Venda;
 
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public final class VendaDAO implements ICrudOperators<Venda, VendaDTO> {
+public final class VendaDAO implements ICrudOperators<Venda, VendaView> {
 
     private static final VendaDAO INSTANCE = new VendaDAO();
 
@@ -91,10 +90,10 @@ public final class VendaDAO implements ICrudOperators<Venda, VendaDTO> {
     }
 
     @Override
-    public List<VendaDTO> findAll() {
+    public List<VendaView> findAll() {
         String sql = "SELECT * FROM vw_venda";
 
-        List<VendaDTO> vendaDTOList = new ArrayList<VendaDTO>();
+        List<VendaView> vendaDTOList = new ArrayList<VendaView>();
 
         try(Connection conection = ConnectionFactory.getConnection()){
             PreparedStatement preparedStatement = conection.prepareStatement(sql);
@@ -111,7 +110,7 @@ public final class VendaDAO implements ICrudOperators<Venda, VendaDTO> {
                 String dataVenda = resultSet.getString("data_venda");
                 String observacao = resultSet.getString("observacao");
 
-                vendaDTOList.add(new VendaDTO(id, valorVenda, codicaoPagamento, cliente, funcionario, dataVenda, observacao));
+                vendaDTOList.add(new VendaView(id, valorVenda, codicaoPagamento, cliente, funcionario, dataVenda, observacao));
             }
 
         } catch (SQLException ex){
@@ -122,10 +121,10 @@ public final class VendaDAO implements ICrudOperators<Venda, VendaDTO> {
     }
 
     @Override
-    public Optional<VendaDTO> findById(Long id) {
+    public Optional<VendaView> findById(Long id) {
         String sql = "SELECT * FROM vw_venda WHERE id = ?";
 
-        VendaDTO vendaDTOList = null;
+        VendaView vendaDTOList = null;
 
         try(Connection conection = ConnectionFactory.getConnection()){
             PreparedStatement preparedStatement = conection.prepareStatement(sql);
@@ -143,7 +142,7 @@ public final class VendaDAO implements ICrudOperators<Venda, VendaDTO> {
                 String dataVenda = resultSet.getString("data_venda");
                 String observacao = resultSet.getString("observacao");
 
-                vendaDTOList = new VendaDTO(id, valorVenda, codicaoPagamento, cliente, funcionario, dataVenda, observacao);
+                vendaDTOList = new VendaView(id, valorVenda, codicaoPagamento, cliente, funcionario, dataVenda, observacao);
             }
 
         } catch (SQLException ex){
@@ -183,4 +182,6 @@ public final class VendaDAO implements ICrudOperators<Venda, VendaDTO> {
 
         return vendaList;
     }
+
+
 }

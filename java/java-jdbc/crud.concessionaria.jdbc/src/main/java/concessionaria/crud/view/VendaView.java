@@ -1,8 +1,8 @@
-package concessionaria.crud.dto;
+package concessionaria.crud.view;
 
 import java.math.BigDecimal;
 
-public class VendaDTO {
+public class VendaView {
     private Long id;
     private BigDecimal valorVenda;
     private String condicaoPagemento;
@@ -11,9 +11,9 @@ public class VendaDTO {
     private String dataVenda;
     private String observacao;
 
-    public VendaDTO(){};
+    public VendaView(){};
 
-    public VendaDTO(Long id, BigDecimal valorVenda, String condicaoPagemento, String cliente, String funcionario, String dataVenda, String observacao) {
+    public VendaView(Long id, BigDecimal valorVenda, String condicaoPagemento, String cliente, String funcionario, String dataVenda, String observacao) {
         this.id = id;
         this.valorVenda = valorVenda;
         this.condicaoPagemento = condicaoPagemento;

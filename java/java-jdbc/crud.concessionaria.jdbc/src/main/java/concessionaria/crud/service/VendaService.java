@@ -1,7 +1,7 @@
 package concessionaria.crud.service;
 
 import concessionaria.crud.dao.VendaDAO;
-import concessionaria.crud.dto.VendaDTO;
+import concessionaria.crud.view.VendaView;
 import concessionaria.crud.model.Venda;
 
 import java.util.List;
@@ -44,11 +44,11 @@ public class VendaService {
         vendaDAO.delete(id);
     }
 
-    public List<VendaDTO> findAll() {
+    public List<VendaView> findAll() {
         return vendaDAO.findAll();
     }
 
-    public Optional<VendaDTO> findById(Long id) {
+    public Optional<VendaView> findById(Long id) {
         if(Objects.isNull(id)){
             throw new NullPointerException("O argumento passado não pode ser null");
         }
