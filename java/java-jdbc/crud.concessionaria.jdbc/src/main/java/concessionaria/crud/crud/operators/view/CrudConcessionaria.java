@@ -137,7 +137,7 @@ public class CrudConcessionaria {
             veiculo.setQtdMarcha(Integer.parseInt(JOptionPane.showInputDialog("quantidade de marcha ?")));
             veiculo.setFkModelo( Long.parseLong(JOptionPane.showInputDialog("Selecione o [ID] do Modelo ?"+modelo)));
             veiculo.setFkConfiguracao( Long.parseLong(JOptionPane.showInputDialog("Selecione o [ID] da configuração ?"+config)));
-            veiculo.setFkCondicao(Long.parseLong(JOptionPane.showInputDialog("Selecione o [ID] da condição de pagamento?"+pagamento)));
+            veiculo.setFkCondicao(Long.parseLong(JOptionPane.showInputDialog("Selecione o [ID] da condição do veiculo?"+condicao)));
             veiculo.setFkTipo(Long.parseLong(JOptionPane.showInputDialog("Selecione o [ID] do Tipo de veiculo?"+tipo)));
             veiculo.setValor(new BigDecimal(JOptionPane.showInputDialog("valor ?")));
 
