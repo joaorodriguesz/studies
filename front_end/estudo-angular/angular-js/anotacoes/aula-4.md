@@ -10,8 +10,8 @@
 >
 > ```html
 > <form name="formulario">
->     <input name="entradaTexto" ></input>
->     /.....
+>  <input name="entradaTexto" ></input>
+>  /.....
 > </form>
 > ```
 >
@@ -34,18 +34,31 @@
 >
 > - **ng-maxlength:** Define quantidade mínima de caracteres.
 >
->   
+> ### Consulta os erros de um campo ou  formulário.
+>
+> - **$error:** Consulta os erros de um campo ou  formulário.
+>
+> ### Define uma RegExp para validar o campo.
+>
+> - **ng-pattern:** Define uma RegExp para validar o campo.
+>
+> 
 >
 > ```javascript
 > 	angular.module("moduleName", []);
 > 	angular.module("moduleName").controller("controllerName", ($scope) => {
+>         //$valid e $invalid
 >         formulario.$valid;
 >         formulario.entradaTexto.$valid
->         
+> 		
+>         //$pristine e $dirty
 >         formulario.$pristine;
 >         formulario.entradaTexto.$pristine
->         
 >         formulario.entradaTexto.$setPristine()
+>         
+>         //$error
+>         formulario.entradaTexto.$error.require
+>         formulario.entradaTexto.$error.maxlength
 >     }
 > ```
 >
@@ -53,4 +66,16 @@
 >
 > ---
 >
-> - 
+> ### Diretiva  - ng-messages=""  (Modulo externo)
+>
+> Gerenciar mensagens como um switch com erros.
+>
+> ```html
+> <div ng-messages="formulario.campo.$error">
+>     <div ng-message="required"> /msg... </div>
+>     <div ng-message="minlength"> /msg... </div>
+> </div>
+> ```
+>
+> 
+
