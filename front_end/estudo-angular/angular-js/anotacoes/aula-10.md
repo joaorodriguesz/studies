@@ -87,6 +87,21 @@ angular.module("modulo").directive("diretiva", function(){
 >
 > > Cria um vínculo bi-direcional entre uma propriedade do scope do template a uma propriedade do scope da diretiva.
 >
+
+---
+
+## Transclude
+
+> Encapsula elementos dentro de uma diretiva, criando um scope não isolado.
+>
+> Aonde vai ser carregado o transclude no template da diretiva.
+>
+> ```html
+> <div ng-transclude>
+>     /... carrega
+> </div>
+> ```
+>
 > 
 
 ----
@@ -101,7 +116,8 @@ angular.module("modulo").directive("diretiva", function(){
                 variavel: '@propriedade', //-> tras o valor do atributo
                 propriedade: '@', //-> se os nome do atributo e da variavel forem iguais pode ser usado assim tbm
                 variavel: "=propriedade" //-> to way data bind
-            }
+            },
+            transclude: true
 		}
     
 	})
