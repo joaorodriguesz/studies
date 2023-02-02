@@ -39,7 +39,7 @@
 
 ```js
 app.config(function ($routeProvider){
-	$routeProvider.when("/contatos", {
+	$routeProvider.when("/contatos/:id", {
 		templateUrl: "",
 		controller: "",
 		resolve: {
@@ -49,5 +49,7 @@ app.config(function ($routeProvider){
 		}
 	})
 })
+
+//também é possivel passar parametros nas rotas e pegar atravez de $routeParams
 ```
 
