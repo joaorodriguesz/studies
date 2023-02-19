@@ -116,19 +116,19 @@
 > >
 > > **EX - todo o banco :**
 > >
-> > ![](https://raw.githubusercontent.com/JoaoPauloMRodrigues/estudos/main/data-base/MySQL/DBA_seguran%C3%A7a_otimiza%C3%A7%C3%A3o/ex_mysqldump/ex_mysqldump.PNG)
+> > ![](https://raw.githubusercontent.com/joaorodriguesz/estudos/main/data-base/mysql/seguran%C3%A7a-otimiza%C3%A7%C3%A3o/ex_mysqldump/ex_mysqldump.PNG)
 > >
 > > **EX - Apenas uma tabela especifica :**
 > >
-> > ![](https://raw.githubusercontent.com/JoaoPauloMRodrigues/estudos/main/data-base/MySQL/DBA_seguran%C3%A7a_otimiza%C3%A7%C3%A3o/ex_mysqldump/ex_mysqldump_only_table.PNG)
+> > ![](https://raw.githubusercontent.com/joaorodrigueszs/estudos/main/data-base/mysql/seguran%C3%A7a-otimiza%C3%A7%C3%A3o/ex_mysqldump/ex_mysqldump_only_table.PNG)
 > >
 > > **EX - Todos menos um :**
 > >
-> > ![](https://raw.githubusercontent.com/JoaoPauloMRodrigues/estudos/main/data-base/MySQL/DBA_seguran%C3%A7a_otimiza%C3%A7%C3%A3o/ex_mysqldump/ex_mysqldump_ignore.PNG)
+> > ![](https://raw.githubusercontent.com/joaorodriguesz/estudos/main/data-base/mysql/seguran%C3%A7a-otimiza%C3%A7%C3%A3o/ex_mysqldump/ex_mysqldump_ignore.PNG)
 > >
 > > ### EX - Executando todo o script de uma vez  (linha de comando) : 
 > >
-> > ![](https://raw.githubusercontent.com/JoaoPauloMRodrigues/estudos/main/data-base/MySQL/DBA_seguran%C3%A7a_otimiza%C3%A7%C3%A3o/ex_mysqldump/exe_script.PNG)
+> > ![](https://raw.githubusercontent.com/joaorodriguesz/estudos/main/data-base/mysql/seguran%C3%A7a-otimiza%C3%A7%C3%A3o/ex_mysqldump/exe_script.PNG)
 >
 > ---
 >
@@ -176,7 +176,7 @@
 >
 >   > - o B é chamado de "Balance Tree" porque o índice sempre tenta balancear os lados da árvore.
 >   >
->   >   > ![b_tree](https://raw.githubusercontent.com/JoaoPauloMRodrigues/Studies/main/dataBase/MySQL/DBA_seguran%C3%A7a_otimiza%C3%A7%C3%A3o/repo_img/b_tree.jpeg)
+>   >   > ![b_tree](https://raw.githubusercontent.com/joaorodriguesz/Studies/main/dataBase/mysql/seguran%C3%A7a-otimiza%C3%A7%C3%A3o/repo_img/b_tree.jpeg)
 >   >   >
 >   >   > > **Ela tenta distribuir ao máximo os nós na ávore**
 >   >   >
@@ -264,7 +264,7 @@
 >
 > ----
 >
-> > ![](https://raw.githubusercontent.com/JoaoPauloMRodrigues/estudos/main/data_base/MySQL/DBA_seguran%C3%A7a_otimiza%C3%A7%C3%A3o/repo_img/ip_coringa.jpeg)
+> > ![](https://raw.githubusercontent.com/joaorodriguesz/estudos/main/data-base/mysql/seguran%C3%A7a-otimiza%C3%A7%C3%A3o/repo_img/ip_coringa.jpeg)
 >
 > 1. *qualquer **IP** de **192.168.1.0** á **192.168.1.255** pode acessar;*
 > 2. *pode ir do **192.168.1.100** á **192.168.1.255;***
@@ -276,7 +276,7 @@
 
 > Conectar no MySQL por linha de comando :
 >
-> > ![](https://raw.githubusercontent.com/JoaoPauloMRodrigues/estudos/main/data_base/MySQL/DBA_seguran%C3%A7a_otimiza%C3%A7%C3%A3o/ex_mysqldump/conexao_mysql.jpeg)
+> > ![](https://raw.githubusercontent.com/joaorodrigueszs/estudos/main/data-base/mysql/seguran%C3%A7a-otimiza%C3%A7%C3%A3o/ex_mysqldump/conexao_mysql.jpeg)
 >
 > - MySQL Slap :  simula consultas concorrentes no mysql. (*https://dev.mysql.com/doc/refman/8.0/en/mysqlslap.html*)
 
