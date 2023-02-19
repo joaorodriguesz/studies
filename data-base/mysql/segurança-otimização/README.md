@@ -120,7 +120,7 @@
 > >
 > > **EX - Apenas uma tabela especifica :**
 > >
-> > ![](https://raw.githubusercontent.com/joaorodrigueszs/estudos/main/data-base/mysql/seguran%C3%A7a-otimiza%C3%A7%C3%A3o/ex_mysqldump/ex_mysqldump_only_table.PNG)
+> > ![](https://raw.githubusercontent.com/joaorodriguesz/estudos/main/data-base/mysql/seguran%C3%A7a-otimiza%C3%A7%C3%A3o/ex_mysqldump/ex_mysqldump_only_table.PNG)
 > >
 > > **EX - Todos menos um :**
 > >
@@ -176,7 +176,7 @@
 >
 >   > - o B é chamado de "Balance Tree" porque o índice sempre tenta balancear os lados da árvore.
 >   >
->   >   > ![b_tree](https://raw.githubusercontent.com/joaorodriguesz/Studies/main/dataBase/mysql/seguran%C3%A7a-otimiza%C3%A7%C3%A3o/repo_img/b_tree.jpeg)
+>   >   > ![](https://s2.glbimg.com/2O94mvUvk6mFkTDAWexC1np4J7A=/0x0:1000x689/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2021/B/8/bqBC2rQLygYGUpM3FEQQ/2012-07-09-exemplo-de-aplicacao-de-busca-por-hash-em-uma-tabela-de-nomes-e-telefones.png)
 >   >   >
 >   >   > > **Ela tenta distribuir ao máximo os nós na ávore**
 >   >   >
