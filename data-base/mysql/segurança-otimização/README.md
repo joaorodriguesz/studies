@@ -116,19 +116,19 @@
 > >
 > > **EX - todo o banco :**
 > >
-> > ![](https://raw.githubusercontent.com/JoaoPauloMRodrigues/estudos/main/data_base/MySQL/DBA_seguran%C3%A7a_otimiza%C3%A7%C3%A3o/ex_mysqldump/ex_mysqldump.PNG)
+> > ![](https://raw.githubusercontent.com/JoaoPauloMRodrigues/estudos/main/data-base/MySQL/DBA_seguran%C3%A7a_otimiza%C3%A7%C3%A3o/ex_mysqldump/ex_mysqldump.PNG)
 > >
 > > **EX - Apenas uma tabela especifica :**
 > >
-> > ![](https://raw.githubusercontent.com/JoaoPauloMRodrigues/estudos/main/data_base/MySQL/DBA_seguran%C3%A7a_otimiza%C3%A7%C3%A3o/ex_mysqldump/ex_mysqldump_only_table.PNG)
+> > ![](https://raw.githubusercontent.com/JoaoPauloMRodrigues/estudos/main/data-base/MySQL/DBA_seguran%C3%A7a_otimiza%C3%A7%C3%A3o/ex_mysqldump/ex_mysqldump_only_table.PNG)
 > >
 > > **EX - Todos menos um :**
 > >
-> > ![](https://raw.githubusercontent.com/JoaoPauloMRodrigues/estudos/main/data_base/MySQL/DBA_seguran%C3%A7a_otimiza%C3%A7%C3%A3o/ex_mysqldump/ex_mysqldump_ignore.PNG)
+> > ![](https://raw.githubusercontent.com/JoaoPauloMRodrigues/estudos/main/data-base/MySQL/DBA_seguran%C3%A7a_otimiza%C3%A7%C3%A3o/ex_mysqldump/ex_mysqldump_ignore.PNG)
 > >
 > > ### EX - Executando todo o script de uma vez  (linha de comando) : 
 > >
-> > ![](https://raw.githubusercontent.com/JoaoPauloMRodrigues/estudos/main/data_base/MySQL/DBA_seguran%C3%A7a_otimiza%C3%A7%C3%A3o/ex_mysqldump/exe_script.PNG)
+> > ![](https://raw.githubusercontent.com/JoaoPauloMRodrigues/estudos/main/data-base/MySQL/DBA_seguran%C3%A7a_otimiza%C3%A7%C3%A3o/ex_mysqldump/exe_script.PNG)
 >
 > ---
 >
