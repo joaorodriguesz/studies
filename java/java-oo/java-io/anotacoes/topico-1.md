@@ -1,5 +1,9 @@
 # Java.io - Leitura
 
+----
+
+![image-20230220101028848](..\imgs\java-io.jpeg)
+
 ---
 
 > - InputStream => FileInputStream : *Input stream of bytes....*
