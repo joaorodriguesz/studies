@@ -18,7 +18,15 @@
 
 ## **Teste antes, codigo depois ( Test Driven Development )**
 
-> *testes ==> Imprementação ==> Refatoração ==> testes* 
+> *testes ==> Implementação ==> Refatoração ==> testes* 
+
+- Códifdo já sai "testado".
+- Evita testes "viciados" na implementação.
+- Refatoração faz parte do processo.
+- Foco.
+- Tendêncida em escrever codigos mais simples.
+
+---
 
 
 

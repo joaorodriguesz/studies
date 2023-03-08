@@ -1,4 +1,4 @@
-package tdd.test;
+package tdd.service.test;
 
 import org.example.modelo.Funcionario;
 import org.example.modelo.service.BonusService;
