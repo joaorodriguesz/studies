@@ -2,7 +2,7 @@
 
 ----
 
-![image-20230220101028848]([..\imgs\java-io.jpeg](https://raw.githubusercontent.com/joaorodriguesz/estudos/main/java/java-oo/java-io/imgs/java-io.jpeg))
+![](https://raw.githubusercontent.com/joaorodriguesz/estudos/main/java/java-oo/java-io/imgs/java-io.jpeg)
 
 ---
 

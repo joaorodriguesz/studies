@@ -6,13 +6,13 @@
 >
 > **HD**
 >
-> ![](..\imgs\serializacao.PNG)
+> ![](https://raw.githubusercontent.com/joaorodriguesz/estudos/main/java/java-oo/java-io/imgs/serializacao.PNG)
 >
 > ---
 >
 > **Rede (*Socket*)**
 >
-> ![](..\imgs\serializacao2.PNG)
+> ![](https://raw.githubusercontent.com/joaorodriguesz/estudos/main/java/java-oo/java-io/imgs/serializacao2.PNG)
 
 ----
 
