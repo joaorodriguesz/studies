@@ -28,5 +28,17 @@
 
 ---
 
+## Notacoes
 
+> Existem algumas notacoes para facilitar os teste como:
+>
+> - @BeforeEach: que executa antes de cada @Test.
+
+----
+
+**Obs**
+
+> - Metodos privados não sao testados.
+> - Nem todas as classes/metodos devem ser testados
+> - Devem se testar metodos ou classes que tenham regras de negocio pois tendem a mudar.
 
