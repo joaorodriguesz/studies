@@ -73,4 +73,66 @@ Essa camada possui, na sua grande maioria, interfaces que o driver implementa
 
 ## Controle de transação
 
+> Assumindo o controle das transacoes
+>
+> ```java
+> connection.setAutoComit(false);
+> ```
+>
+> ---
+>
+> Podendo assim explicitar o commit e o rollback das transacoes
+>
+> ```java
+> connection.commit()
+> connection.rollback();
+> ```
+
+---
+
+## PoolConection
+
+>  *é uma técnica de gerenciamento de conexões de banco de dados, em que um pool (ou grupo) de conexões de banco de dados é criado e mantido, e as conexões são reutilizadas por diferentes solicitações de banco de dados.*
+>
+> *O objetivo do pool de conexões é reduzir o tempo de conexão ao banco de dados e evitar a criação e destruição excessivas de conexões, o que pode ser caro em termos de desempenho e recursos.*
+>
+>  exemplo simples de ConnectionFactory com pool de conexões em Java utilizando a biblioteca c3p0:
+>
+> ```java
+> public class ConnectionFactory {
+> 
+>   private static ConnectionFactory instance = new ConnectionFactory();
+>   private ComboPooledDataSource dataSource;
+> 
+>   private ConnectionFactory() {
+>     try {
+>       // Criar e configurar o pool de conexões
+>       dataSource = new ComboPooledDataSource();
+>       dataSource.setDriverClass("com.mysql.jdbc.Driver");
+>       dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/mydatabase");
+>       dataSource.setUser("myusername");
+>       dataSource.setPassword("mypassword");
+>       dataSource.setMinPoolSize(5);
+>       dataSource.setMaxPoolSize(10);
+>       dataSource.setAcquireIncrement(1);
+>       dataSource.setMaxStatements(100);
+>     } catch (Exception e) {
+>       throw new RuntimeException("Erro ao configurar o pool de conexões", e);
+>     }
+>   }
+> 
+>   public static ConnectionFactory getInstance() {
+>     return instance;
+>   }
+> 
+>   public Connection getConnection() {
+>     try {
+>       // Obter uma conexão do pool de conexões
+>       return dataSource.getConnection();
+>     } catch (SQLException e) {
+>       throw new RuntimeException("Erro ao obter uma conexão do pool", e);
+>     }
+>   }
+> ```
+>
 > 
