@@ -83,18 +83,18 @@
 > @Table(name = "products")
 > public class Product {
 > 
->     @Id
->     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_sequence")
->     @SequenceGenerator(name = "product_sequence", sequenceName = "product_seq", allocationSize = 1)
->     private Long id;
+>  @Id
+>  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_sequence")
+>  @SequenceGenerator(name = "product_sequence", sequenceName = "product_seq", allocationSize = 1)
+>  private Long id;
 > 
->     @Column(name = "name")
->     private String name;
+>  @Column(name = "name")
+>  private String name;
 > 
->     @Column(name = "price")
->     private double price;
+>  @Column(name = "price")
+>  private double price;
 > 
->     // Construtores, getters e setters
+>  // Construtores, getters e setters
 > }
 > 
 > ```
@@ -108,18 +108,33 @@
 > @Table(name = "categories")
 > public class Category {
 > 
->     @Id
->     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "categories_sequence")
->     @SequenceGenerator(name = "categories_sequence", sequenceName = "categories_seq", allocationSize = 1)
->     private Long id;
+>  @Id
+>  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "categories_sequence")
+>  @SequenceGenerator(name = "categories_sequence", sequenceName = "categories_seq", allocationSize = 1)
+>  private Long id;
 > 
->     @Column(name = "name")
->     private String name;
+>  @Column(name = "name")
+>  private String name;
 > 
->     // Construtores, getters e setters
+>  // Construtores, getters e setters
 > }
 > 
 > ```
+>
+> ----
+>
+> 1. @OneToOne:
+>    - A anotação `@OneToOne` é usada para mapear um relacionamento um-para-um entre duas entidades. Ela pode ser colocada em uma propriedade que representa a associação entre as entidades. É possível especificar parâmetros como `mappedBy` e `cascade` para controlar o comportamento da associação.
+> 2. @OneToMany:
+>    - A anotação `@OneToMany` é usada para mapear um relacionamento um-para-muitos entre duas entidades. Ela pode ser colocada em uma propriedade que representa a associação entre as entidades. É possível especificar parâmetros como `mappedBy` e `cascade` para controlar o comportamento da associação.
+> 3. @ManyToOne:
+>    - A anotação `@ManyToOne` é usada para mapear um relacionamento muitos-para-um entre duas entidades. Ela pode ser colocada em uma propriedade que representa a associação entre as entidades. É possível especificar parâmetros como `fetch` e `cascade` para controlar o comportamento da associação.
+> 4. @ManyToMany:
+>    - A anotação `@ManyToMany` é usada para mapear um relacionamento muitos-para-muitos entre duas entidades. Ela pode ser colocada em uma propriedade que representa a associação entre as entidades. É necessário definir uma tabela de associação intermediária para armazenar os pares de chaves estrangeiras correspondentes.
+>
+> *ToOne acabam sempre carregando todos fazendo um join
+>
+> 
 
 ---
 
@@ -136,7 +151,7 @@
 
 ----
 
-## Clico de vida
+## Clico de vida das entidades
 
 > ![./imgs/clicoJPA.png](imgs/clicoJPA.png)
 
@@ -201,18 +216,18 @@
 > EntityManager entityManager = entityManagerFactory.createEntityManager();
 > 
 > try {
->     TypedQuery<Product> query = entityManager.createQuery(jpql, Product.class);
->     query.setParameter("priceThreshold", 50.0);
+>  TypedQuery<Product> query = entityManager.createQuery(jpql, Product.class);
+>  query.setParameter("priceThreshold", 50.0);
 > 
->     List<Product> products = query.getResultList();
+>  List<Product> products = query.getResultList();
 > 
->     for (Product product : products) {
->         System.out.println("Nome do produto: " + product.getName() + ", Preço: " + product.getPrice());
->     }
+>  for (Product product : products) {
+>      System.out.println("Nome do produto: " + product.getName() + ", Preço: " + product.getPrice());
+>  }
 > } catch (Exception e) {
->     e.printStackTrace();
+>  e.printStackTrace();
 > } finally {
->     entityManager.close();
+>  entityManager.close();
 > }
 > 
 > ```
@@ -226,19 +241,121 @@
 > EntityManager entityManager = entityManagerFactory.createEntityManager();
 > 
 > try {
->     TypedQuery<Product> query = entityManager.createQuery(jpql, Product.class);
->     query.setParameter(1, 50.0);
+>  TypedQuery<Product> query = entityManager.createQuery(jpql, Product.class);
+>  query.setParameter(1, 50.0);
 > 
->     List<Product> products = query.getResultList();
+>  List<Product> products = query.getResultList();
 > 
->     for (Product product : products) {
->         System.out.println("Nome do produto: " + product.getName() + ", Preço: " + product.getPrice());
->     }
+>  for (Product product : products) {
+>      System.out.println("Nome do produto: " + product.getName() + ", Preço: " + product.getPrice());
+>  }
 > } catch (Exception e) {
->     e.printStackTrace();
+>  e.printStackTrace();
 > } finally {
->     entityManager.close();
+>  entityManager.close();
 > }
 > ```
 >
+> ----
+>
+> Também é possivel instanciar e retornar objetos com o valor das colunas da query
+>
+> ```java
+> String jpqlQuery = "SELECT NEW com.example.Person(p.name, p.age) FROM Person p WHERE p.age > :age";
 > 
+> TypedQuery<Person> query = entityManager.createQuery(jpqlQuery, Person.class);
+> query.setParameter("age", 18);
+> 
+> List<Person> results = query.getResultList();
+> ```
+>
+> ----
+>
+> ### @NamedQuery
+>
+> Ao usar consultas nomeadas, você pode centralizar e reutilizar consultas comumente usadas em suas entidades JPA.
+>
+> ```java
+> import javax.persistence.Entity;
+> import javax.persistence.GeneratedValue;
+> import javax.persistence.GenerationType;
+> import javax.persistence.Id;
+> import javax.persistence.NamedQuery;
+> 
+> @Entity
+> @NamedQuery(name = "Pessoa.encontrarPorIdadeMaiorQue", query = "SELECT p FROM Pessoa p WHERE p.idade > :idade")
+> public class Pessoa {
+>     @Id
+>     @GeneratedValue(strategy = GenerationType.IDENTITY)
+>     private Long id;
+>     
+>     private String nome;
+>     private int idade;
+>     
+>     // Construtor, getters, setters e outros códigos...
+> }
+> 
+> TypedQuery<Pessoa> query = entityManager.createNamedQuery("Pessoa.encontrarPorIdadeMaiorQue", Pessoa.class);
+> query.setParameter("idade", 18);
+> 
+> List<Pessoa> resultados = query.getResultList();
+> 
+> ```
+>
+> 
+
+----
+
+## Relacioanmento bidirecional
+
+> E uma associação entre duas entidades em que ambas têm conhecimento da existência uma da outra. Isso permite navegar e acessar as entidades de ambos os lados do relacionamento.
+>
+> Aqui está um exemplo de relacionamento bidirecional entre as entidades `Product` e `Category`, onde um produto pode pertencer a várias categorias e uma categoria pode ter vários produtos:
+>
+> ```java
+> @Entity
+> public class Product {
+>     @Id
+>     @GeneratedValue(strategy = GenerationType.IDENTITY)
+>     private Long id;
+> 
+>     private String name;
+> 
+>     @ManyToMany(mappedBy = "products", cascade = CascadeType.ALL)
+>     private List<Category> categories = new ArrayList<>();
+> 
+>     // Getters e Setters
+> }
+> 
+> ```
+>
+> ```java
+> @Entity
+> public class Category {
+>     @Id
+>     @GeneratedValue(strategy = GenerationType.IDENTITY)
+>     private Long id;
+> 
+>     private String name;
+> 
+>     @ManyToMany
+>     private List<Product> products = new ArrayList<>();
+> 
+>     // Getters e Setters
+> }
+> 
+> ```
+>
+> No exemplo acima, o relacionamento bidirecional é estabelecido usando a anotação `@ManyToMany` nas duas entidades. A entidade `Product` possui uma lista de categorias (`categories`) e a entidade `Category` possui uma lista de produtos (`products`).
+>
+> O atributo `mappedBy = "products"` na anotação `@ManyToMany` na classe `Product` indica que a propriedade `products` na classe `Category` é responsável por mapear o relacionamento. Isso define que a classe `Category` é a proprietária do relacionamento.
+>
+> ### Propriedade cascade
+>
+> 1. `CascadeType.PERSIST`: A operação de persistência (salvar) será propagada para os objetos associados. Isso significa que quando você salvar um objeto principal, os objetos associados também serão salvos automaticamente.
+> 2. `CascadeType.MERGE`: A operação de mesclagem (atualizar) será propagada para os objetos associados. Isso significa que quando você atualizar um objeto principal, as alterações nos objetos associados também serão mescladas automaticamente.
+> 3. `CascadeType.REMOVE`: A operação de remoção (excluir) será propagada para os objetos associados. Isso significa que quando você excluir um objeto principal, os objetos associados também serão excluídos automaticamente.
+> 4. `CascadeType.ALL`: Todas as operações de persistência (salvar, atualizar, excluir) serão propagadas para os objetos associados.
+>
+> 
+
