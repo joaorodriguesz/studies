@@ -357,5 +357,21 @@
 > 3. `CascadeType.REMOVE`: A operação de remoção (excluir) será propagada para os objetos associados. Isso significa que quando você excluir um objeto principal, os objetos associados também serão excluídos automaticamente.
 > 4. `CascadeType.ALL`: Todas as operações de persistência (salvar, atualizar, excluir) serão propagadas para os objetos associados.
 >
-> 
+
+----
+
+## Carregamento Lazy e Eager
+
+> - **Lazy** (preguiçoso): Nessa abordagem, os dados são carregados e processados apenas quando necessário. Isso significa que os dados são carregados sob demanda, durante a execução do modelo, evitando a necessidade de carregar todo o conjunto de dados de uma só vez. Essa estratégia é útil quando os dados são volumosos e carregar tudo de uma vez pode ser impraticável ou requerer muita memória.
+> - **Eager** (ansioso): Por outro lado, a abordagem "eager" envolve o carregamento de todos os dados de uma vez, antes da execução do modelo. Isso significa que todos os dados são carregados antecipadamente na memória e processados antes do treinamento ou inferência do modelo. Essa estratégia é adequada quando o conjunto de dados cabe facilmente na memória e o pré-processamento pode ser realizado de forma eficiente antes do treinamento ou inferência.
+>
+> Mas se o EntityManager estiver fechado  e tentar trazer algo Lazy irá gerar uma exption pois o EM não irá conseguir lidar com o carregamento. Uma for de resovler isso e fazendo um consulta propria usando JOIN FETCH
+>
+> A cláusula "join fetch" é utilizada em consultas SQL para realizar uma junção entre tabelas e, ao mesmo tempo, recuperar os dados associados a essas tabelas em uma única consulta, evitando consultas adicionais para cada registro relacionado.
+>
+> ```java
+> SELECT p FROM Pedido p JOIN FETCH p.itensPedido
+> ```
+>
+> Essa consulta irá recuperar todos os pedidos e, ao mesmo tempo, carregar os itens relacionados usando uma única consulta, evitando consultas adicionais para cada pedido.
 
