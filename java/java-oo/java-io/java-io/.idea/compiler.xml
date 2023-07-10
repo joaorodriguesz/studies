@@ -9,8 +9,5 @@
         <module name="java-io2" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="java-io" target="18" />
-    </bytecodeTargetLevel>
   </component>
 </project>

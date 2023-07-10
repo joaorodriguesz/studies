@@ -16,6 +16,20 @@
 
 ----
 
+> Se a classe pai é serializavel todos o filhos serão também.
+>
+> Se as classes acopladas da classe serializavel não forem serializaveis também, irá gerar uma exceção, mas pode ser corrigida dessa forma:
+>
+> ```java
+> public class Serializavel implements Serializable {
+>     private transient ClasseNaoSerializavel;
+> }
+> ```
+>
+> porem o atributo não será serializado.
+
+---
+
 ## Principais classes
 
 > ```java

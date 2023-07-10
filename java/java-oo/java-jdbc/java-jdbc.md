@@ -219,4 +219,6 @@ Essa camada possui, na sua grande maioria, interfaces que o driver implementa
 > 
 > ```
 >
-> 
+
+----
+
