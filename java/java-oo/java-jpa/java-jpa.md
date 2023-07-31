@@ -375,3 +375,291 @@
 >
 > Essa consulta irá recuperar todos os pedidos e, ao mesmo tempo, carregar os itens relacionados usando uma única consulta, evitando consultas adicionais para cada pedido.
 
+-----
+
+## Criteria API
+
+> A Criteria API é uma parte da Java Persistence API (JPA) que permite construir consultas de banco de dados de forma programática, utilizando código Java em vez de consultas SQL em strings. Ela oferece uma abordagem tipada, segura e dinâmica para criar consultas, permitindo maior flexibilidade na construção de critérios e proporcionando portabilidade entre diferentes sistemas de gerenciamento de banco de dados compatíveis com JPA.
+>
+> 
+>
+> ```java
+>  public static void main(String[] args) {
+>         EntityManagerFactory emf = Persistence.createEntityManagerFactory("nome_da_unidade_de_persistencia");
+>         EntityManager em = emf.createEntityManager();
+> 
+>         try {
+>             // Parâmetros opcionais para filtros
+>             double precoMinimo = 50.0;
+>             double precoMaximo = 100.0;
+>             String termoDePesquisa = "computador";
+> 
+>             // Obter o construtor de critérios (CriteriaBuilder) do EntityManager
+>             CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+> 
+>             // Criar uma consulta para a entidade Produto
+>             CriteriaQuery<Produto> criteriaQuery = criteriaBuilder.createQuery(Produto.class);
+> 
+>             // Definir a raiz da consulta (a entidade principal da consulta é Produto)
+>             Root<Produto> root = criteriaQuery.from(Produto.class);
+> 
+>             // Criar predicados (condições) para os filtros
+>             Predicate filtroPrecoMinimo = criteriaBuilder.greaterThanOrEqualTo(root.get("preco"), precoMinimo);
+>             Predicate filtroPrecoMaximo = criteriaBuilder.lessThanOrEqualTo(root.get("preco"), precoMaximo);
+> 
+>             // Criação do filtro de pesquisa baseado no termo de pesquisa (se fornecido)
+>             Predicate filtroPesquisa = null;
+>             if (termoDePesquisa != null && !termoDePesquisa.isEmpty()) {
+>                 filtroPesquisa = criteriaBuilder.like(criteriaBuilder.lower(root.get("nome")), "%" + termoDePesquisa.toLowerCase() + "%");
+>             }
+> 
+>             // Combinar os predicados usando a lógica de conjunção (AND) para criar o filtro final
+>             Predicate filtroFinal;
+>             if (filtroPesquisa != null) {
+>                 filtroFinal = criteriaBuilder.and(filtroPrecoMinimo, filtroPrecoMaximo, filtroPesquisa);
+>             } else {
+>                 filtroFinal = criteriaBuilder.and(filtroPrecoMinimo, filtroPrecoMaximo);
+>             }
+> 
+>             // Definir o filtro final para a consulta
+>             criteriaQuery.select(root).where(filtroFinal);
+> 
+>             // Criar uma TypedQuery para executar a consulta
+>             TypedQuery<Produto> typedQuery = em.createQuery(criteriaQuery);
+> 
+>             // Obter a lista de produtos que atendem ao filtro
+>             List<Produto> produtos = typedQuery.getResultList();
+> 
+>             // Exibir os resultados
+>             for (Produto produto : produtos) {
+>                 System.out.println("ID: " + produto.getId() + ", Nome: " + produto.getNome() + ", Preço: " + produto.getPreco());
+>             }
+>         } finally {
+>             em.close();
+>             emf.close();
+>         }
+>     }
+> ```
+>
+> 
+
+---
+
+## Embeddable
+
+> O termo `@Embeddable` é uma anotação utilizada no Java Persistence API (JPA) para marcar uma classe como uma classe embutida. Uma classe embutida é uma classe que representa um componente de dados que faz parte de outra entidade persistente.
+>
+> Quando uma classe é marcada como `@Embeddable`, isso significa que ela não é uma entidade por si só, mas sim um componente de uma entidade maior. As propriedades da classe embutida são mapeadas para colunas na tabela da entidade que a contém.
+>
+> ```java
+> import javax.persistence.*;
+> 
+> @Embeddable
+> public class Endereco {
+>     private String rua;
+>     private String cidade;
+>     private String estado;
+>     private String cep;
+> 
+>     // Construtores, getters e setters
+> }
+> 
+> ```
+>
+> ```java
+> import javax.persistence.*;
+> 
+> @Entity
+> public class Cliente {
+>     @Id
+>     @GeneratedValue(strategy = GenerationType.IDENTITY)
+>     private Long id;
+> 
+>     private String nome;
+> 
+>     @Embedded
+>     private Endereco endereco;
+> 
+>     // Construtores, getters e setters
+> }
+> 
+> ```
+>
+> Quando a entidade `Cliente` for persistida, as propriedades da classe `Endereco` serão mapeadas para colunas na tabela `Cliente`, formando um único registro com os dados do cliente e do endereço.
+>
+
+----
+
+## Herança
+
+> Existem três tipos principais de mapeamento de herança que podem ser usados para modelar hierarquias de classes em bancos de dados relacionais:
+>
+> 1. **Herança de Tabela Única (Single Table Inheritance):**
+>    - Todas as classes na hierarquia são mapeadas para uma única tabela no banco de dados.
+>    - Atributos de todas as classes são armazenados na mesma tabela.
+>    - Uma coluna discriminadora é usada para identificar a classe concreta de cada registro.
+>    - Eficiente em termos de espaço, mas pode levar a uma tabela grande e complexa.
+> 2. **Herança de Tabela por Classe Concreta (Table Per Concrete Class):**
+>    - Cada classe concreta na hierarquia é mapeada para uma tabela separada no banco de dados.
+>    - Cada tabela possui apenas os atributos específicos da classe concreta e herda os atributos da classe pai.
+>    - O Hibernate faz várias consultas ao recuperar objetos, uma para cada classe concreta.
+>    - Oferece clareza na estrutura das tabelas, mas pode levar a várias tabelas.
+> 3. **Herança de Tabela por Subclasse (Table Per Subclass):**
+>    - Cada classe (abstrata ou concreta) na hierarquia é mapeada para uma tabela separada no banco de dados.
+>    - A tabela da classe pai contém atributos comuns a todas as subclasses.
+>    - Tabelas das subclasses contêm os atributos específicos de cada uma.
+>    - Usa uma coluna discriminadora para determinar a classe concreta ao recuperar objetos.
+>    - Evita duplicação de colunas, mas pode levar a várias tabelas.
+>
+> ---
+>
+> **Herança de Tabela Única (Single Table Inheritance)**
+>
+> ```java
+> import javax.persistence.*;
+> 
+> @Entity
+> @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+> @DiscriminatorColumn(name = "tipo_veiculo", discriminatorType = DiscriminatorType.STRING)
+> public abstract class Veiculo {
+> 
+>     @Id
+>     @GeneratedValue(strategy = GenerationType.IDENTITY)
+>     private Long id;
+> 
+>     private String fabricante;
+>     private String modelo;
+> 
+>     // Getters e Setters
+> }
+> 
+> ```
+>
+> ```java
+> @Entity
+> @DiscriminatorValue("Carro")
+> public class Carro extends Veiculo {
+> 
+>     private int numeroPortas;
+> 
+>     // Getters e Setters
+> }
+> 
+> ```
+>
+> A anotação `@DiscriminatorColumn` é usada para definir a coluna discriminadora que identificará a classe concreta de cada registro. Neste caso, usamos a coluna `tipo_veiculo` com o tipo `STRING` para armazenar o valor do tipo de veículo.
+>
+> ---
+>
+> **Herança de Tabela por Classe Concreta (Table Per Concrete Class)**
+>
+> ```java
+> import javax.persistence.*;
+> 
+> @Entity
+> @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+> public abstract class Veiculo {
+> 
+>     @Id
+>     @GeneratedValue(strategy = GenerationType.TABLE)
+>     private Long id;
+> 
+>     private String fabricante;
+>     private String modelo;
+> 
+>     // Getters e Setters
+> }
+> ```
+>
+> ```java
+> @Entity
+> @DiscriminatorValue("Carro")
+> public class Carro extends Veiculo {
+> 
+>     private int numeroPortas;
+> 
+>     // Getters e Setters
+> }
+> 
+> ```
+>
+> Quando persistimos objetos `Carro` ou `Moto` usando o Hibernate, o Hibernate cria tabelas separadas no banco de dados para cada classe concreta. Cada tabela conterá apenas os atributos específicos daquela classe, além dos atributos herdados da classe abstrata `Veiculo`.
+>
+> ----
+>
+> **Herança de Tabela por Subclasse (Table Per Subclass)**
+>
+> ```java
+> import javax.persistence.*;
+> 
+> @Entity
+> @Inheritance(strategy = InheritanceType.JOINED)
+> public abstract class Veiculo {
+> 
+>     @Id
+>     @GeneratedValue(strategy = GenerationType.IDENTITY)
+>     private Long id;
+> 
+>     private String fabricante;
+>     private String modelo;
+> 
+>     // Getters e Setters
+> }
+> 
+> ```
+>
+> ```java
+> @Entity
+> @PrimaryKeyJoinColumn(name = "carro_id")
+> public class Carro extends Veiculo {
+> 
+>     private int numeroPortas;
+> 
+>     // Getters e Setters
+> }
+> 
+> ```
+>
+> Cada tabela terá um relacionamento de chave primária com a tabela da classe abstrata `Veiculo`. A anotação `@PrimaryKeyJoinColumn` é usada para especificar o nome da coluna que representará a chave primária na tabela da classe concreta.
+>
+> Quando persistimos objetos `Carro` ou `Moto` usando o Hibernate, o Hibernate cria tabelas separadas no banco de dados para cada classe concreta. Cada tabela conterá apenas os atributos específicos daquela classe, além dos atributos herdados da classe abstrata `Veiculo`.
+
+-----
+
+## Chaves compostas
+
+> ```java
+> import java.io.Serializable;
+> import javax.persistence.Embeddable;
+> 
+> @Embeddable
+> public class ChavePedido implements Serializable {
+>     private Long numeroPedido;
+>     private Long clienteId;
+> 
+>     // Construtores, getters e setters (deixe-os implementados)
+> }
+> 
+> ```
+>
+> ```java
+> import javax.persistence.Entity;
+> import javax.persistence.EmbeddedId;
+> import javax.persistence.Table;
+> 
+> @Entity
+> @Table(name = "pedidos")
+> public class Pedido {
+>     @EmbeddedId
+>     private ChavePedido chavePedido;
+> 
+>     private String descricao;
+>     private double valor;
+> 
+>     // Construtores, getters e setters (deixe-os implementados)
+> }
+> 
+> ```
+
+----
+
