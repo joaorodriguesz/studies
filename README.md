@@ -1,4 +1,4 @@
 # estudos
-Estudos de novas tecnologias.
+Study of technologies
 
  
