@@ -72,3 +72,33 @@
 > | 500    | Internal Server Error   | Erro Interno do Servidor |
 > | 501    | Not Implemented         | Não Implementado         |
 > | 503    | Service Unavailable     | Serviço Indisponível     |
+
+---
+
+## Spring Security
+
+> Em essência, o módulo Spring Security é uma ferramenta essencial para proteger aplicativos Java, ajudando a manter a integridade dos dados, a confidencialidade das informações e a garantir que apenas os usuários autorizados possam acessar os recursos do aplicativo.
+>
+> - Autenticacao
+> - Autorizacao
+> - Protecao contra ataques (CSRF, clickjacking, etc.)
+
+---
+
+## JWT
+
+> JWT (JSON Web Token) é um formato padrão para representar informações de forma segura entre duas partes, geralmente usado para autenticação e troca de informações entre um cliente e um servidor. Ele é frequentemente utilizado em aplicações web e APIs para transmitir informações sobre o usuário autenticado de maneira compacta e segura.
+>
+> O JWT é composto por três partes:
+>
+> 1. **Header**: Contém informações sobre o tipo de token (que é JWT) e o algoritmo de criptografia utilizado para assinar o token.
+> 2. **Payload**: É onde os dados do token são armazenados. Esses dados são normalmente informações sobre o usuário ou outras entidades, como permissões, roles, ou quaisquer outros dados relevantes para a aplicação.
+> 3. **Signature**: É uma assinatura digital que garante que o token não foi alterado durante a sua transmissão. A assinatura é criada usando a chave secreta do servidor, o que permite que o servidor verifique a integridade do token quando o receber.
+
+---
+
+![](./imgs/jwt.png)
+
+---
+
+![](./imgs/jwt2.png)
