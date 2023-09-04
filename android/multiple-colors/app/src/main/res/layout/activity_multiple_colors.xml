@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity=""
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Múltiplas Cores"
+            android:textSize="40dp"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <Button
+                android:id="@+id/reset"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="80dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="50"
+                android:text="Resetar Cores"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <Button
+                android:id="@+id/buttonBlack"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="50"
+                android:backgroundTint="@color/black"
+                android:text=""
+                />
+
+            <Button
+                android:id="@+id/buttonPurple"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="50"
+                android:backgroundTint="@color/purple"
+                android:text=""
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <Button
+                android:id="@+id/buttonPink"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="50"
+                android:backgroundTint="@color/pink"
+                android:text=""
+                />
+
+            <Button
+                android:id="@+id/buttonBlue"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="50"
+                android:backgroundTint="@color/blue"
+                android:text=""/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
