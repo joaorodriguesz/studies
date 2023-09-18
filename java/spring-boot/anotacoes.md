@@ -102,3 +102,11 @@
 ---
 
 ![](./imgs/jwt2.png)
+
+------
+
+## Interceptor
+
+> ![](./imgs/interceptor.png)
+>
+> Em resumo, os interceptors são usados principalmente em contextos de middleware, como Java EE, para interceptar chamadas de método e eventos, enquanto os filters são usados em aplicações web para processar requisições HTTP antes que elas atinjam o servlet final. Ambos são ferramentas poderosas para adicionar funcionalidades extras e lógica personalizada em suas aplicações Java.
