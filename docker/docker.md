@@ -85,6 +85,10 @@
 > - ***docker rm $(docker ps -aq)*** => Para remover todos os contêineres (parados e em execução) 
 > - ***docker exec -it <id no container> <comando>*** => Para interagir com o containers de forma interativa.
 > - ***docker run -it <iamgem> bash*** => Para subir o container e já executar o bash interativo.
+> - ***docker run -d <iamgem>*** => Executa a imagem e deixa rodando por baixo em detached.
+> - ***docker run -d -P <iamgem>*** => basicamente, este comando executa um contêiner em segundo plano e mapeia automaticamente as portas do contêiner para portas disponíveis no host.
+> - ***docker  port <id>*** => Exibe o mapeamento de portas em relacao ao host.
+> - ***docker run -d -p 8080::80 <iamgem>*** => Configura um mapeamento de uma porta do container para uma do host.
 >
 > O `docker run` cria um novo container e o executa. O `docker exec` permite executar um comando em um container que já está em execução.
 >
