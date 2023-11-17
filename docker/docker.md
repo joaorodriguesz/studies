@@ -66,6 +66,15 @@
 ## DockerHub
 
 > O Docker Hub é um serviço da Docker que funciona como um registro centralizado para imagens de contêineres. Ele permite o armazenamento, compartilhamento e distribuição de imagens Docker, tanto públicas quanto privadas. Os desenvolvedores usam o Docker Hub para colaborar, acessar imagens prontas, e integrar facilmente suas aplicações em contêineres a diferentes ferramentas e serviços.
+>
+> ### Subindo imagens
+>
+> ```bash
+> docker login u- <usuario>
+> docker push <iamgen>:<tag>
+> ```
+>
+> 
 
 
 
@@ -146,3 +155,20 @@
 > Dockerfile é um arquivo de configuração usado para criar uma imagem Docker. O Docker é uma plataforma de virtualização de contêiner que permite que você empacote aplicativos e suas dependências em contêineres, que podem ser executados em qualquer ambiente que suporte o Docker.
 >
 > Um Dockerfile contém um conjunto de instruções que descrevem como uma imagem Docker deve ser construída. Essas instruções incluem coisas como a imagem de base a ser usada, os comandos a serem executados para configurar o ambiente, as dependências a serem instaladas e os arquivos a serem copiados para o contêiner.
+>
+> ```dockerfile
+> FROM node:14
+> WORKDIR /app-node
+> ARG PORT_BUILD=600 #tempo de build da imagem
+> ENV PORT=$PORT_BUILD #variavel de ambiente
+> EXPOSE $PORT_BUILD #expoe a porta a ser utilizada
+> COPY . .
+> RUN npm install
+> ENTRYPOINT npm start
+> ```
+>
+> a
+
+----
+
+## Volumes

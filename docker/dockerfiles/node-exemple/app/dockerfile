@@ -1,5 +1,8 @@
 FROM node:14
 WORKDIR /app-node
+ARG PORT_BUILD=600 #tempo de build da imagem
+ENV PORT=$PORT_BUILD #variavel de ambiente
+EXPOSE $PORT_BUILD #expoe a porta a ser utilizada
 COPY . .
 RUN npm install
 ENTRYPOINT npm start
