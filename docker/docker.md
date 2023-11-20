@@ -55,7 +55,7 @@
 >    - **Objetivo:** Isola os recursos do sistema, como CPU, memória e dispositivos de E/S, usando control groups (cgroups).
 >    - **Docker Option:** As opções relacionadas a cgroups são gerenciadas implicitamente pelo Docker.
 >
-> ---
+> Volumes 
 >
 > ### Cgroup
 >
@@ -83,44 +83,29 @@
 ## Comandos Uteis
 
 > - ***docker ps*** ou ***docker container ls*** => Exibe quais conteiners estão em execucao.
->
+> - ***docker ps -s*** => Exibe o tamanho do container juntamente os as inforamcoes do ps, tamanho da imagem + cabada de escrita.
 > - ***docker ps -a*** ou ***docker container ls -a*** => Exibe todos os conteiners (ativos ou nao).
->
 > - ***docker pull <imagem>*** => Baixa a inagem do dockerHub.
->
 > - ***docker stop <nome ou id container>*** => Para a execucao do container resetando todos os processos.
->
 > - ***docker stop -t=0 <nome ou id container>*** => Para a execucao do container estantaneamente resetando todos os processos.
->
 > - ***docker  pause <nome ou id container>*** => Para a execucao do container mas mantem todos os processos.
->
 > - ***docker  unpause <nome ou id container>*** => Volta a execucao do container.
->
 > - ***docker start <nome container>*** =>  Execuca o container.
->
 > - ***docker stop $(docker ps -q)*** => Para parar todos os contêineres em execução.
->
 > - ***docker rm $(docker ps -aq)*** => Para remover todos os contêineres (parados e em execução) 
->
+> - ***docker rmi $(docker image ls  -aq)*** => Para remover todos as imagens
 > - ***docker exec -it <id no container> <comando>*** => Para interagir com o containers de forma interativa. (O `docker run` cria um novo container e o executa. O `docker exec` permite executar um comando em um container que já está em execução.)
->
 > - ***docker run -it <iamgem> bash*** => Para subir o container e já executar o bash interativo.
->
 > - ***docker run -d <iamgem>*** => Executa a imagem e deixa rodando por baixo em detached.
->
 > - ***docker run -d -P <iamgem>*** => basicamente, este comando executa um contêiner em segundo plano e mapeia automaticamente as portas do contêiner para portas disponíveis no host.
->
 > - ***docker  port <id>*** => Exibe o mapeamento de portas em relacao ao host.
->
 > - ***docker run -d -p 8080::80 <iamgem>*** => Configura um mapeamento de uma porta do container para uma do host.
->
 > - **docker inspect <imageId>** => Mostra meta dados da imagem.
->
 > - **docker history <imageId>** => Mostra todas as camadas da imagem.
->
 > - **docker build -t**  <nome> **:**<versao> <contexto que vai executada (diretorio)> => Buildar o dockerfile para construir uma nova imagem.
+> - **docker volume ls:** Para ver os volumes criados
 >
->   
+> 
 >
 > 
 >
@@ -171,4 +156,44 @@
 
 ----
 
+## **Bind mounts**
+
+> São links entre uma pasta existente no sistema hospedeiro e uma pasta dentro do contêiner Docker. Isso significa que o conteúdo da pasta no sistema hospedeiro é acessível dentro do contêiner. Alterações feitas em qualquer lado (no sistema hospedeiro ou no contêiner) são refletidas imediatamente no outro
+>
+> Criar um bind mount
+>
+> ```bash
+> docker run -it --mount type=bind,source=/home/user/volumedocker,target=/app ubuntu bash
+> ```
+>
+> 
+
+----
+
 ## Volumes
+
+> Ssão armazenamentos persistentes usados pelo Docker. Eles são gerenciados pelo Docker e estão localizados em um local específico no sistema hospedeiro. Volumes são independentes do ciclo de vida do contêiner, o que significa que persistem mesmo quando o contêiner não está em execução.
+>
+> Volumes gerenciados pelo docker armazenados em (/var/lib/dcoker/volumes)
+>
+> ```bash
+> docker run -it -v volumedocker:/app ubuntu bash
+> 
+> docker run -it --mount source=meunovovolume,target=/app ubuntu bash
+> ```
+>
+> 
+
+----
+
+## TMPFS
+
+> TMPFS é um sistema de arquivos temporário baseado em memória RAM. No contexto do Docker, você pode usar TMPFS para criar um sistema de arquivos temporário na memória para um contêiner.
+>
+> Ao criar um contêiner Docker, é possível montar um sistema de arquivos TMPFS em um diretório dentro do contêiner. Isso é útil para armazenar dados temporários que não precisam ser persistidos no disco.
+>
+> Por exemplo, para montar um sistema TMPFS em um diretório dentro do contêiner, você pode usar o seguinte comando:
+>
+> ```bash
+> docker run -it --mount type=tmpfs, destination=/app ubuntu bash
+> ```
