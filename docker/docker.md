@@ -103,13 +103,12 @@
 > - **docker inspect <imageId>** => Mostra meta dados da imagem.
 > - **docker history <imageId>** => Mostra todas as camadas da imagem.
 > - **docker build -t**  <nome> **:**<versao> <contexto que vai executada (diretorio)> => Buildar o dockerfile para construir uma nova imagem.
-> - **docker volume ls:** Para ver os volumes criados
+> - **docker volume ls:** Para ver os volumes criados.
+> - **docker network ls:** Lista as redes no sistema.
+> - **docker run -it --name <nome>  <imagem> bash:** Roda uma imagem docker com nome setado.
+> - **docker network create --direve <drive> <nome>:** Cria uma rede.
+> - **docker run -it --name <nome> --network <nome>  <imagem> bash:** Roda uma imagem docker com nome setado e na rede setada.
 >
-> 
->
-> 
->
-> 
 
 
 
@@ -152,48 +151,77 @@
 > ENTRYPOINT npm start
 > ```
 >
-> a
 
 ----
 
-## **Bind mounts**
+## Storage
 
-> São links entre uma pasta existente no sistema hospedeiro e uma pasta dentro do contêiner Docker. Isso significa que o conteúdo da pasta no sistema hospedeiro é acessível dentro do contêiner. Alterações feitas em qualquer lado (no sistema hospedeiro ou no contêiner) são refletidas imediatamente no outro
+> ## **Bind mounts**
 >
-> Criar um bind mount
+> > São links entre uma pasta existente no sistema hospedeiro e uma pasta dentro do contêiner Docker. Isso significa que o conteúdo da pasta no sistema hospedeiro é acessível dentro do contêiner. Alterações feitas em qualquer lado (no sistema hospedeiro ou no contêiner) são refletidas imediatamente no outro
+> >
+> > Criar um bind mount
+> >
+> > ```bash
+> > docker run -it --mount type=bind,source=/home/user/volumedocker,target=/app ubuntu bash
+> > ```
+> >
+> > 
 >
-> ```bash
-> docker run -it --mount type=bind,source=/home/user/volumedocker,target=/app ubuntu bash
-> ```
+> ----
+>
+> ## Volumes
+>
+> > Ssão armazenamentos persistentes usados pelo Docker. Eles são gerenciados pelo Docker e estão localizados em um local específico no sistema hospedeiro. Volumes são independentes do ciclo de vida do contêiner, o que significa que persistem mesmo quando o contêiner não está em execução.
+> >
+> > Volumes gerenciados pelo docker armazenados em (/var/lib/dcoker/volumes)
+> >
+> > ```bash
+> > docker run -it -v volumedocker:/app ubuntu bash
+> > 
+> > docker run -it --mount source=meunovovolume,target=/app ubuntu bash
+> > ```
+> >
+> > 
+>
+> ----
+>
+> ## TMPFS
+>
+> > TMPFS é um sistema de arquivos temporário baseado em memória RAM. No contexto do Docker, você pode usar TMPFS para criar um sistema de arquivos temporário na memória para um contêiner.
+> >
+> > Ao criar um contêiner Docker, é possível montar um sistema de arquivos TMPFS em um diretório dentro do contêiner. Isso é útil para armazenar dados temporários que não precisam ser persistidos no disco.
+> >
+> > Por exemplo, para montar um sistema TMPFS em um diretório dentro do contêiner, você pode usar o seguinte comando:
+> >
+> > ```bash
+> > docker run -it --mount type=tmpfs, destination=/app ubuntu bash
+> > ```
+>
+> ----
+>
+
+## Redes
+
+> Redes no Docker são essenciais para conectar e isolar contêineres, permitindo a comunicação entre eles e com recursos externos. Existem diferentes tipos de redes, como Bridge, Host, Overlay e Macvlan, cada uma com usos específicos.
+>
+> ### Drivers
+>
+> > ### Bridge
+> >
+> > > A rede padrão do Docker é chamada de "bridge network". Ela permite que os containers se comuniquem entre si e com o host usando endereços IP dentro de uma rede virtual, facilitando a interação e o compartilhamento de informações. Essa rede oferece isolamento e é a base para a comunicação entre os containers, sendo criada automaticamente durante a instalação do Docker.
+> >
+> > **Host**
+> >
+> > > O driver de rede "host" no Docker permite que um container compartilhe diretamente a pilha de rede do sistema operacional hospedeiro. Dessa forma, o container acessa recursos e serviços do host sem a camada de abstração da rede do Docker. Isso proporciona desempenho de rede similar ao do próprio host, mas pode apresentar riscos de segurança ao expor mais o container à rede do host.
+> >
+> > **None**
+> >
+> > > Nenhum drive. Remove a interface de rede.
+>
+> ---
+>
+> 
 >
 > 
 
-----
-
-## Volumes
-
-> Ssão armazenamentos persistentes usados pelo Docker. Eles são gerenciados pelo Docker e estão localizados em um local específico no sistema hospedeiro. Volumes são independentes do ciclo de vida do contêiner, o que significa que persistem mesmo quando o contêiner não está em execução.
->
-> Volumes gerenciados pelo docker armazenados em (/var/lib/dcoker/volumes)
->
-> ```bash
-> docker run -it -v volumedocker:/app ubuntu bash
-> 
-> docker run -it --mount source=meunovovolume,target=/app ubuntu bash
-> ```
->
-> 
-
-----
-
-## TMPFS
-
-> TMPFS é um sistema de arquivos temporário baseado em memória RAM. No contexto do Docker, você pode usar TMPFS para criar um sistema de arquivos temporário na memória para um contêiner.
->
-> Ao criar um contêiner Docker, é possível montar um sistema de arquivos TMPFS em um diretório dentro do contêiner. Isso é útil para armazenar dados temporários que não precisam ser persistidos no disco.
->
-> Por exemplo, para montar um sistema TMPFS em um diretório dentro do contêiner, você pode usar o seguinte comando:
->
-> ```bash
-> docker run -it --mount type=tmpfs, destination=/app ubuntu bash
-> ```
