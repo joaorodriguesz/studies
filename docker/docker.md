@@ -108,6 +108,10 @@
 > - **docker run -it --name <nome>  <imagem> bash:** Roda uma imagem docker com nome setado.
 > - **docker network create --direve <drive> <nome>:** Cria uma rede.
 > - **docker run -it --name <nome> --network <nome>  <imagem> bash:** Roda uma imagem docker com nome setado e na rede setada.
+> - **docker-compose down  <nome>:** Derruba um servico.
+> - **docker-compose up  <nome>:** Sobe um servico.
+> - **docker-compose up -d  <nome>:** Sobe um servico detached.
+> - **docker-compose ps  :** Lista os servicos.
 >
 
 
@@ -221,7 +225,8 @@
 >
 > ---
 >
-> 
->
-> 
+
+## Docker Compose (Composicao e cordenacao de containers)
+
+> O Docker Compose é uma ferramenta que simplifica a execução de aplicativos Docker compostos por múltiplos contêineres. Ele utiliza um arquivo de configuração YAML para definir serviços, redes e volumes, facilitando o gerenciamento e a orquestração desses contêineres. Isso torna mais eficiente o desenvolvimento, teste e implementação de aplicativos complexos.
 
