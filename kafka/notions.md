@@ -60,3 +60,10 @@
 > 2. **Ordenação garantida por chave**: Se as mensagens têm chaves relacionadas, o Kafka garante que todas as mensagens com a mesma chave sejam enviadas para a mesma partição, mantendo a ordem de chegada. Isso é útil em cenários em que a ordem das mensagens é crucial para o processamento adequado dos dados.
 > 3. **Escalabilidade horizontal**: O uso de chaves permite adicionar mais partições ao tópico do Kafka conforme necessário, para lidar com um maior volume de dados ou para aumentar a capacidade de processamento. Com mais partições, é possível distribuir ainda mais as mensagens entre os consumidores, aumentando o paralelismo e a capacidade de processamento.
 > 4. **Paralelismo de processamento**: Ao distribuir as mensagens com base nas chaves, várias instâncias de consumidores podem processar as mensagens em paralelo. Isso permite que o processamento de dados seja escalável e eficiente, aproveitando ao máximo os recursos disponíveis
+
+## Configs
+
+> **`max.poll.records`**: Esse parâmetro define o limite máximo de registros (mensagens) que podem ser retornados em uma única chamada ao método `poll()`. Se esse valor for configurado muito alto, o consumo de memória pode aumentar, mas se for muito baixo, o desempenho pode ser limitado.
+>
+> - Valor padrão: 500
+> - Exemplo de configuração: `max.poll.records=1000`
